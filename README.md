@@ -12,6 +12,8 @@ _Describe the problem CodeSchool solves and its main features._
 
 Foundational curriculum and market research (no code yet):
 
+- **[CodeSchool Research Pack (PDF)](docs/research/CodeSchool-Research-Pack.pdf)**: everything below in one interactive 34-page PDF: scope, findings, CBSE review, action plan, interview plan and fillable interview forms. Fill the forms in a private copy, not in this public repository.
+
 - [Kids coding curriculum and market](docs/research/reports/Kids%20coding%20curriculum%20and%20market.md): when coding starts in Indian and international schools, a grade-by-grade level framework, and the market landscape.
 - [CBSE verification](docs/research/cbse-verification.md): the report's CBSE claims checked against the official circulars and syllabi (5 Nov 2026).
 - [CBSE handbook review](docs/research/cbse-handbook-review.md): what the free CBSE CT&AI books contain, and the gaps CodeSchool could fill.
