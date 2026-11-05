@@ -13,7 +13,7 @@ This note confirms or corrects the CBSE claims in [Kids coding curriculum and ma
 | 50 h a year (Classes 3-5), 100 h (Classes 6-8: 40 CT + 20 AI + 40 projects) | **Confirmed** | Curriculum sections 3.4 and 10.2 |
 | Classes 3-5 embedded in Maths and The World Around Us (TWAU) | **Confirmed** | Resource books follow the NCERT Maths chapter order |
 | Scratch named for Classes 3-5 | **Confirmed** | Competency C-6, a single competency |
-| Teachable Machine named for Classes 6-8 | **Wrong** | No tool is named. The curriculum is platform-agnostic and only says "no-code AI tools" |
+| Teachable Machine named for Classes 6-8 | **Partly right** | The curriculum document names no tool and only says "no-code AI tools". But the Class 8 Teacher Handbook gives "Teachable Machine" as the answer to "Platforms like ___ allow students to train AI models without coding" (see the [handbook review](cbse-handbook-review.md)) |
 | Python is not a Class 3-8 topic | **Confirmed** | Python appears only in the "Aims" section |
 | Class 9 CT&AI modules dropped for the 2026-27 batch | **Confirmed** | Acad-70/2026, 29 October 2026 |
 | Compulsory Class 9 CT&AI in 2027-28 and a Class 10 board exam in 2028-29 | **Still unconfirmed** | Neither circular says this |
@@ -52,7 +52,7 @@ Source: https://cbseacademic.nic.in/web_material/CurriculumMain27/CTAI_Pri_2026-
 **Platform and tools**
 - It is built "without dependence on any specific platform". Schools have "flexibility… to choose the platform… without being tied to specific software or technology". It "recommends harnessing… free and open-source tools".
 - **Scratch** is named once, in Classes 3-5 competency C-6: "parts of a computer, input/output devices, file management, internet safety, educational software, and block-based coding (e.g. Scratch)".
-- **No AI tool is named.** Class 8 says "simple no-code AI tools (image classifiers, chatbots, data prediction apps)". Class 7 says "applying them to a small dataset using AI tools".
+- **No AI tool is named in the curriculum itself.** Class 8 says "simple no-code AI tools (image classifiers, chatbots, data prediction apps)". Class 7 says "applying them to a small dataset using AI tools". The Class 8 Teacher Handbook does name Teachable Machine in an answer key.
 - **Python** appears only in the Aims: "tools of technology, such as Python programming, help in modelling".
 
 **What Classes 3-5 actually cover** (section 10.1)

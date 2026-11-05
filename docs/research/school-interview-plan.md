@@ -94,8 +94,8 @@ Each interview should produce evidence for or against these. "Kill" means: if mo
 7. What would make it easier to deliver: lesson plans, worksheets, a platform, training, assessment tools?
 8. The handbooks have no project materials, but Classes 6-8 have 40 hours of projects. What are students doing for their projects? Who designs and marks them?
 9. How are teachers keeping the "Teacher Observation Journal"? Do you have a format for it?
-8. Have any vendors approached you about CT&AI? What did they offer, and at what price?
-9. (ICSE) Have you heard anything from CISCE about CT or AI for the younger classes?
+10. Have any vendors approached you about CT&AI? What did they offer, and at what price?
+11. (ICSE) Have you heard anything from CISCE about CT or AI for the younger classes?
 
 ### 3. Class 3-5 maths or EVS teacher (40 min)
 
@@ -133,7 +133,7 @@ Show a printed **Band B, Level B3 (conditionals)** lesson that follows the PRIMM
 **Practice**
 
 6. What do you teach in Classes 3-8 today, and with which tools (Scratch, PictoBlox, Python, MS Office)?
-7. CBSE gives computer teachers the AI-literacy part of CT&AI in Classes 6-8, and has them assess the projects. Are you doing that this year? With which tools, and how is it going?
+7. CBSE gives computer teachers the AI-literacy part of CT&AI in Classes 6-8, and has them assess the projects. Are you doing that this year? With which tools, and how is it going? (The Class 8 handbook has a cat/dog image-classifier activity and names Teachable Machine. Has anyone run it?)
 8. When do students first write Python or another text language? CBSE's Computer Applications has none before Class 11. Do you teach any earlier? How do students cope with Class 11 Python?
 9. What do students find hardest when they move from blocks to typing code?
 
