@@ -133,7 +133,7 @@ Show a printed **Band B, Level B3 (conditionals)** lesson that follows the PRIMM
 **Practice**
 
 6. What do you teach in Classes 3-8 today, and with which tools (Scratch, PictoBlox, Python, MS Office)?
-7. CBSE gives computer teachers the AI-literacy part of CT&AI in Classes 6-8, and has them assess the projects. Are you doing that this year? With which tools, and how is it going? (The Class 8 handbook has a cat/dog image-classifier activity and names Teachable Machine. Has anyone run it?)
+7. CBSE gives computer teachers the AI-literacy part of CT&AI in Classes 6-8, and has them assess the projects. Are you doing that this year? With which tools, and how is it going? (The Class 8 handbook has three Teachable Machine labs: a waste classifier, voice commands and a cat/dog bias test. Has anyone run them? Do you have the webcams, microphones and internet they need?)
 8. When do students first write Python or another text language? CBSE's Computer Applications has none before Class 11. Do you teach any earlier? How do students cope with Class 11 Python?
 9. What do students find hardest when they move from blocks to typing code?
 
