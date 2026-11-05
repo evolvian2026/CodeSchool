@@ -142,7 +142,7 @@ Show a printed **Band B, Level B3 (conditionals)** lesson that follows the PRIMM
 
 ## Note template
 
-Copy this for each interview and save as `docs/research/interviews/<school-code>-<role>.md` (no real names).
+Copy this for each interview and save as `docs/research/interviews/<school-code>-<role>.md`. Use no real names. That folder is ignored by Git because this repository is public, so the notes stay on your computer only; back them up somewhere private.
 
 ```markdown
 # <School code> · <Role> · <Date>
@@ -188,9 +188,11 @@ Copy this for each interview and save as `docs/research/interviews/<school-code>
 | 5 | 7-11 Dec | Final interviews, tally hypotheses |
 | 6 | 14-18 Dec | Findings memo and go/no-go on the pilot offer |
 
-## What to prepare
+## Materials
 
-- A one-page introduction for schools: who we are, why we're asking, that the school won't be named, and the free findings summary.
-- The printed **Level B3 paper prototype** (one lesson, about 4 pages).
-- A device audit sheet for the computer teacher.
-- A tracking sheet: school code, board, tier, city, contacts, interview dates, status.
+All drafted in [interview-materials/](interview-materials/):
+
+- [One-page introduction for schools](interview-materials/intro-letter.md), with the opening and consent script.
+- [Level B3 paper prototype](interview-materials/level-b3-paper-prototype.md): one lesson of about 4 printed pages.
+- [Device audit sheet](interview-materials/device-audit-sheet.md) for the computer teacher.
+- [Tracking sheet template](interview-materials/tracking-sheet-template.csv). Copy it to a private file before adding contacts.

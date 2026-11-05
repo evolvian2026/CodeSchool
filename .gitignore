@@ -1,0 +1,4 @@
+# This repository is public. Keep interview data with names, contacts
+# or school details out of Git.
+docs/research/interviews/
+*.private.*
