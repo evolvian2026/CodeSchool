@@ -13,6 +13,7 @@ _Describe the problem CodeSchool solves and its main features._
 Foundational curriculum and market research (no code yet):
 
 - [Kids coding curriculum and market](docs/research/reports/Kids%20coding%20curriculum%20and%20market.md): when coding starts in Indian and international schools, a grade-by-grade level framework, and the market landscape.
+- [CBSE verification](docs/research/cbse-verification.md): the report's CBSE claims checked against the official circulars and syllabi (5 Nov 2026).
 - [Research notes](docs/research/research_notes/Kids%20coding%20curriculum%20and%20market/): the source notes behind the report.
 - [School interview plan](docs/research/school-interview-plan.md): hypotheses, sample, interview guides and timeline for validating the research with schools.
 - [Interview materials](docs/research/interview-materials/): intro letter, Level B3 paper prototype, device audit sheet and tracking sheet.

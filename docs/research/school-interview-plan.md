@@ -22,6 +22,7 @@ Each interview should produce evidence for or against these. "Kill" means: if mo
 | H6 | A maths teacher can run one level in one period with a script and no training | The paper-prototype walkthrough is completed within a period, with only minor questions | Teachers say they can't run it without a CS teacher |
 | H7 | Assessment and reporting are a reason to buy | Coordinators want class dashboards and report-card-ready grades | Schools don't assess CT&AI at all |
 | H8 | ICSE schools have a similar need for Classes 1-8 | ICSE heads describe a Computer Studies gap or want CT&AI alignment | ICSE schools are happy with their publisher's textbook |
+| H9 | Schools want a structured route from Scratch to Python for Classes 6-10, because CBSE has no programming subject until Class 11 | Computer teachers or coordinators say students reach Class 11 Python unprepared, or ask for Python before Class 11 | Schools are content with Scratch until Class 11 |
 
 ## Who to interview
 
@@ -85,7 +86,7 @@ Each interview should produce evidence for or against these. "Kill" means: if mo
 
 1. Has the school timetabled CT&AI for Classes 3-8 this year? Which classes, and how many periods a week?
 2. Who teaches it in Classes 3-5? In Classes 6-8?
-3. Are you using the CBSE student and teacher books? How are teachers finding them?
+3. Are you using the free CBSE CT&AI student and teacher books, which follow the NCERT maths chapters? How are teachers finding them?
 4. Did teachers attend NISHTHA or any other training for CT&AI? Was it useful?
 5. How is CT&AI being assessed? How does it appear on report cards?
 6. What do parents ask about it?
@@ -129,8 +130,9 @@ Show a printed **Band B, Level B3 (conditionals)** lesson that follows the PRIMM
 **Practice**
 
 6. What do you teach in Classes 3-8 today, and with which tools (Scratch, PictoBlox, Python, MS Office)?
-7. When do students first write Python or another text language? How does it go?
-8. What do students find hardest when they move from blocks to typing code?
+7. CBSE gives computer teachers the AI-literacy part of CT&AI in Classes 6-8, and has them assess the projects. Are you doing that this year? With which tools, and how is it going?
+8. When do students first write Python or another text language? CBSE's Computer Applications has none before Class 11. Do you teach any earlier? How do students cope with Class 11 Python?
+9. What do students find hardest when they move from blocks to typing code?
 
 ### 5. Parents (optional, 15 min)
 
@@ -176,6 +178,8 @@ Copy this for each interview and save as `docs/research/interviews/<school-code>
 2. Every 5 schools, update a running tally of For / Against / Unclear for each hypothesis.
 3. After all interviews, group quotes by theme (affinity mapping), separately for each fee tier and board.
 4. Write a 2-page findings memo: what we learned, which hypotheses held, what changes in the product plan, and whether to make a pilot offer.
+
+*CBSE facts used in this plan were checked against the official documents on 5 Nov 2026; see [CBSE verification](cbse-verification.md).*
 
 **Decision rule:** go ahead with a December pilot offer if H1, H2 and H3 are supported in at least half of the CBSE schools and H4 holds in the mid and premium tiers. If H1 fails, the product shouldn't depend on the CBSE circular: revisit the parent channel and the ICSE and state-board angles.
 

@@ -11,7 +11,7 @@
 | **Lesson structure** | PRIMM + Parsons: Predict & Run → Investigate → Modify → Parsons puzzle → Make |
 | **Learning goal** | Students explain that an **if-else** block makes the program choose between two actions, checked every time the loop repeats |
 | **Builds on** | B1 (sequence and loops), B2 (events) |
-| **Curriculum link** | Logical reasoning and algorithmic thinking in CBSE CT&AI Classes 3-5 *(exact competency mapping to be confirmed against the CBSE document)* |
+| **Curriculum link** | CBSE CT&AI Class 4 algorithmic thinking: "Movements on grids or direction-based paths" and "follow a set of well-defined, elaborate conditions", plus block-based coding (competency C-6). **Note:** CBSE makes explicit if-then logic a Class 7 outcome, so if-else at Class 4 is a deliberate stretch that the interviews test. See [CBSE verification](../cbse-verification.md). |
 
 **Before class (5 minutes of preparation)**
 - Draw a row of 5 squares on the floor or board (see Step 1). Chalk or tape is fine.
@@ -169,6 +169,7 @@ On a slip of paper, each student answers:
 3. What would you change?
 4. Would you use this on a projector, on paper, or in the computer lab?
 5. Is the answer key enough, or would you need more help? What kind?
+6. CBSE's CT book for your class follows the maths chapters. Is there a maths chapter this lesson could sit inside? Is if-else too early for Class 4?
 
 **Score (circle one):**
 - Teacher could run it without help: **Yes / With small changes / No**
