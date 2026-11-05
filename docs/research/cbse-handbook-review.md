@@ -1,6 +1,6 @@
 # Review of the free CBSE CT&AI handbooks
 
-**Reviewed:** 5 November 2026, all 12 books · **Why:** these free books are what every CBSE school will compare CodeSchool with. A principal will ask why they should pay for something CBSE already gives away.
+**Reviewed:** 5 November 2026, all 12 books plus CBSE's 28 April 2026 webinar slides · **Why:** these free books are what every CBSE school will compare CodeSchool with. A principal will ask why they should pay for something CBSE already gives away.
 
 ## What I read
 
@@ -100,13 +100,25 @@ The CBSE curriculum lists "block-based coding (e.g. Scratch)" as a Class 3-5 com
 
 The Class 8 book adds CG-5: "proficiency to use Computer & other devices, computer applications for learning". The Middle Stage books say they build "foundational knowledge on Coding, Data Analysis and Artificial Intelligence tools", but **none of the 12 books contains any coding**.
 
-**So what:** schools are told to teach coding with nothing to teach it from, in every class from 3 to 8. **This is the clearest gap CodeSchool can fill.**
+**But CBSE is telling schools that coding isn't needed.** The [28 April 2026 webinar](#what-the-cbse-webinar-adds-28-april-2026) presents the absence of coding as a design choice, not a gap:
+- a Class 3 example is introduced with "No coding/software"
+- the assessment slide says there is "no 'write a program'… no expectation of computer access"
+- for Class 6: "Recognise — not build… They don't need to write code or train models"
+
+**So what:** the coding gap is real on paper, since Scratch is still a listed Classes 3-5 competency, but schools may not feel it. Coding could be a weak buying reason by itself. It is more likely to sell as a **"now you build it" extension** of the puzzles, or through the parent channel, than as "CBSE requires it". This is a risk to test directly in the interviews (coordinator question 9, hypothesis H10).
 
 ### 5. Projects are 40% of Middle Stage time and have no materials in any book
 
 In Classes 6, 7 and 8 alike, time is 40 hours of CT, 20 hours of AI, and 40 hours for "two required projects" of 20 hours each. The Class 6 book says students should "use AI tools and data analysis to create solutions for community or fictional city issues", and that teachers should use "clear rubrics". **Neither edition of any class contains a project brief, rubric or example.** Assessment includes practical examinations, project presentations and reflective journals.
 
-**So what:** **ready-made, assessable project kits for Classes 6-8** cover the biggest unsupported block of time in the curriculum: 120 hours across three years. They are also where coding and AI can be used for real. This should be tested as a top buying reason in interviews (see hypothesis H10 in the interview plan).
+The webinar gives one example topic per grade, all data projects ending in a presentation:
+- Class 6: weather across states
+- Class 7: "Nutri-Quest" weekly food planner
+- Class 8: sports participation data
+
+It also lists an **"AI Project list with rubrics" as "coming soon"**. Six months later (5 November 2026), the CT&AI page still doesn't link one.
+
+**So what:** **ready-made, assessable project kits for Classes 6-8** cover the biggest unsupported block of time in the curriculum: 120 hours across three years. They are also where coding and AI can be used for real. This should be tested as a top buying reason in interviews (see hypothesis H10 in the interview plan). **The window may close:** once CBSE publishes its own project list and rubrics, a kit has to work with those topics rather than compete with them. Check the CT&AI page monthly.
 
 ### 6. AI: the student books teach it, the teacher books don't, and only Class 8 is hands-on
 
@@ -116,7 +128,7 @@ In Classes 6, 7 and 8 alike, time is 40 hours of CT, 20 hours of AI, and 40 hour
   - **Class 6:** AI versus automation, Alan Turing and the Turing Test, supervised/unsupervised/reinforcement learning, data types, patterns, and online safety (passwords, phishing, piracy, digital footprints).
   - **Class 7:** data science, computer vision and NLP; classification, regression and clustering explained with examples; six industry case studies; charts; bias.
   - **Class 8:** the AI project lifecycle, worked through with a "predict who scores above 75%" example including accuracy; AI in the environment, health, farming and education (for example ICMR's TB X-ray screening and the Pune waste app); fairness; responsible AI.
-- **The teacher books contain only the exercises and answer keys.** There is no lesson plan, explanation or slide for the AI chapters, so the teacher has to teach from the student book.
+- **The teacher books contain only the exercises and answer keys.** There is no lesson plan, explanation or slide for the AI chapters, so the teacher has to teach from the student book. The webinar describes the teacher book as "everything in the student handbook, plus" solutions and prompts, which is not true of the Classes 6-8 AI sections. It also promises short **"Concept Handouts"** for the AI sections, "coming soon".
 - **Classes 6 and 7 have no hands-on AI.** The Class 7 outcome "Apply basic predictive approaches/techniques to a small dataset" has no practical task behind it.
 - **Class 8 has three step-by-step labs, all on Teachable Machine.** The book names Teachable Machine and Machine Learning for Kids as no-code platforms.
   1. **Waste classifier:** photograph 20-30 items each of plastic, paper and organic waste, train an image model, then test it with a webcam.
@@ -143,6 +155,31 @@ Every book lists continuous, competency-based assessment, including written test
 
 **So what:** a simple **observation journal and progress record**, mapped to the CBSE competencies and printable for report cards, is a small but concrete feature to test.
 
+## What the CBSE webinar adds (28 April 2026)
+
+Source: [webinar slides](https://cbseacademic.nic.in/web_material/CurriculumMain27/CTAI_WebinarPPT_2026-27.pdf), 45 slides, "Vision and Design of the CT-AI Curriculum for Classes 3–8". I read the slides in full but have not watched the [recording](https://youtube.com/live/KXYvvXZtYyk).
+
+- **No coding, by design.** The slides repeat "no coding/software", "no 'write a program'" and "no expectation of computer access for assessment". The approach is "largely unplugged", and AI activities "use simple digital tools where available". See finding 4.
+- **AI is about recognising, not building**, in Class 6 at least: "Recognise — not build… They don't need to write code or train models". Class 8's Teachable Machine labs go further than this.
+- **Project examples, but no project list yet.** The slides give one data-project topic per grade and promise "AI Project list with rubrics", which is still not published. See finding 5.
+- **More is "coming soon":**
+  - a dedicated CT&AI page (now live)
+  - "Concept Handouts" for the AI sections (not yet linked)
+  - the project list with rubrics (not yet linked)
+- **Who teaches:** in Classes 6-8, CT goes through Mathematics, Science **and Social Sciences** teachers ("similar to art-integrated learning"). AI literacy and the projects are "anchored by the Computer teacher".
+- **Teacher training is CBSE's own CPD, not NISHTHA.** The 2026-27 annual training theme is "Computational Thinking and Understanding AI", with eight sub-themes. It is delivered through:
+  - one-day district deliberations (6 CPD hours)
+  - half-day lead-school sessions (3 hours)
+  - online Board sessions
+  - videos on the DD PM e-Vidya CBSE 15 channel
+  - one-day regional workshops
+- **Framing:** the slides cite Singapore, Finland, the US (AI4K12), the UAE, Australia and China as precedents. The hours are "indicative — schools can adjust".
+
+**So what:**
+- CBSE has set expectations low on technology, which suits low-device schools. It also means a CodeSchool pitch built on "CBSE requires coding" would contradict the Board's own message.
+- The strongest openings are the ones CBSE itself admits are unfinished: **project lists with rubrics and AI concept support**. Both are promised but not yet delivered.
+- Teacher training is short (one-day workshops). That supports the case for **scripted, in-product teacher guidance**.
+
 ## What this means for CodeSchool
 
 **Don't compete with the books. Sit on top of them.**
@@ -161,7 +198,8 @@ This sharpens the positioning in the research report: CodeSchool is **the easies
 
 ## Still to check
 
-- Whether CBSE has published project guidance anywhere else. The CT&AI page links a [webinar recording](https://youtube.com/live/KXYvvXZtYyk) and its [slides](https://cbseacademic.nic.in/web_material/CurriculumMain27/CTAI_WebinarPPT_2026-27.pdf); neither has been reviewed yet. Ask coordinators too.
+- When CBSE publishes the promised project list with rubrics and the AI Concept Handouts. Check the CT&AI page monthly, and ask coordinators whether either has reached schools.
+- The [webinar recording](https://youtube.com/live/KXYvvXZtYyk), for anything said that isn't on the slides (the slides are reviewed above).
 - What the linked Google Docs worksheets, YouTube videos and the Class 8 cat/dog dataset contain.
 - Whether schools have the computers, webcams and internet the Class 8 labs need (the device audit covers this).
 - Hindi or regional-language editions: none is listed on the CT&AI page.

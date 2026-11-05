@@ -19,7 +19,7 @@ This note confirms or corrects the CBSE claims in [Kids coding curriculum and ma
 | Compulsory Class 9 CT&AI in 2027-28 and a Class 10 board exam in 2028-29 | **Still unconfirmed** | Neither circular says this |
 | Computer Applications (165) teaches Python and HTML in Classes 9-10 | **Wrong** | No programming at all: office tools in Class 9, HTML/CSS in Class 10 |
 | CBSE's first programming subject is in Class 11 | **Confirmed (new finding)** | Python in Computer Science 083 and Informatics Practices 065 |
-| Teacher training is through NISHTHA | **Not in these documents** | Neither the curriculum nor the circulars mention it. The claim rests on press reports only |
+| Teacher training is through NISHTHA | **Not supported; CBSE runs its own CPD** | No CBSE document mentions NISHTHA. The [28 April 2026 webinar slides](https://cbseacademic.nic.in/web_material/CurriculumMain27/CTAI_WebinarPPT_2026-27.pdf) describe CBSE's own plan: a 2026-27 annual training theme, "Computational Thinking and Understanding AI", delivered through one-day district and regional workshops (6 CPD hours each), half-day lead-school sessions (3 hours), online Board sessions and videos on the DD PM e-Vidya CBSE 15 channel |
 
 ## 1. Circular Acad-15/2026: launch
 

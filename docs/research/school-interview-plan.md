@@ -88,14 +88,15 @@ Each interview should produce evidence for or against these. "Kill" means: if mo
 1. Has the school timetabled CT&AI for Classes 3-8 this year? Which classes, and how many periods a week?
 2. Who teaches it in Classes 3-5? In Classes 6-8?
 3. Are you using the free CBSE CT&AI student and teacher books, which follow the NCERT maths chapters? How are teachers finding them?
-4. Did teachers attend NISHTHA or any other training for CT&AI? Was it useful?
+4. Did teachers attend any CBSE training for CT&AI this year, such as the district or regional workshops, a lead-school session or the DD PM e-Vidya videos? Was it useful?
 5. How is CT&AI being assessed? How does it appear on report cards?
 6. What do parents ask about it?
 7. What would make it easier to deliver: lesson plans, worksheets, a platform, training, assessment tools?
-8. The handbooks have no project materials, but Classes 6-8 have 40 hours of projects. What are students doing for their projects? Who designs and marks them?
-9. How are teachers keeping the "Teacher Observation Journal"? Do you have a format for it?
-10. Have any vendors approached you about CT&AI? What did they offer, and at what price?
-11. (ICSE) Have you heard anything from CISCE about CT or AI for the younger classes?
+8. The handbooks have no project materials, but Classes 6-8 have 40 hours of projects. What are students doing for their projects? Who designs and marks them? CBSE promised a project list with rubrics: has the school received it?
+9. CBSE's webinar says the curriculum needs "no coding/software". Does the school plan to teach Scratch or any coding in Classes 3-8 anyway? Why or why not?
+10. How are teachers keeping the "Teacher Observation Journal"? Do you have a format for it?
+11. Have any vendors approached you about CT&AI? What did they offer, and at what price?
+12. (ICSE) Have you heard anything from CISCE about CT or AI for the younger classes?
 
 ### 3. Class 3-5 maths or EVS teacher (40 min)
 
