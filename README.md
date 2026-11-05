@@ -14,6 +14,7 @@ Foundational curriculum and market research (no code yet):
 
 - **[CodeSchool Research Pack (PDF)](docs/research/CodeSchool-Research-Pack.pdf)**: everything below in one interactive 34-page PDF: scope, findings, CBSE review, action plan, interview plan and fillable interview forms. Fill the forms in a private copy, not in this public repository.
 - **[Interview Field Kit (PDF)](docs/research/CodeSchool-Interview-Field-Kit.pdf)**: print-and-fill kit for school visits: pre-visit checklist, intro letter, participant information and consent record, interview guides with note space for each role, the full Level B3 lesson with cut-out student sheet, observation sheet, device audit and same-day debrief.
+- **[Hindi letter and consent (PDF)](docs/research/CodeSchool-Hindi-Letter-and-Consent.pdf)**: Hindi introduction letter, participant information sheet, opening script and a bilingual consent record, for Hindi-medium schools. Have a fluent Hindi speaker check it before sending.
 - **[Decision Kit (PDF)](docs/research/CodeSchool-Decision-Kit.pdf)**: after the interviews: findings memo, go/no-go check against the decision rule, pilot success criteria, and draft pilot offer and letter-of-intent templates.
 
 - [Kids coding curriculum and market](docs/research/reports/Kids%20coding%20curriculum%20and%20market.md): when coding starts in Indian and international schools, a grade-by-grade level framework, and the market landscape.
