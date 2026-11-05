@@ -23,6 +23,7 @@ Each interview should produce evidence for or against these. "Kill" means: if mo
 | H7 | Assessment and reporting are a reason to buy | Coordinators want class dashboards and report-card-ready grades | Schools don't assess CT&AI at all |
 | H8 | ICSE schools have a similar need for Classes 1-8 | ICSE heads describe a Computer Studies gap or want CT&AI alignment | ICSE schools are happy with their publisher's textbook |
 | H9 | Schools want a structured route from Scratch to Python for Classes 6-10, because CBSE has no programming subject until Class 11 | Computer teachers or coordinators say students reach Class 11 Python unprepared, or ask for Python before Class 11 | Schools are content with Scratch until Class 11 |
+| H10 | The parts CBSE didn't provide are what schools struggle with: coding, the 40-hour Classes 6-8 projects, hands-on AI, and the observation journal | Coordinators or computer teachers name one of these as unsolved, without being prompted | Schools say the free handbooks cover what they need |
 
 ## Who to interview
 
@@ -91,6 +92,8 @@ Each interview should produce evidence for or against these. "Kill" means: if mo
 5. How is CT&AI being assessed? How does it appear on report cards?
 6. What do parents ask about it?
 7. What would make it easier to deliver: lesson plans, worksheets, a platform, training, assessment tools?
+8. The handbooks have no project materials, but Classes 6-8 have 40 hours of projects. What are students doing for their projects? Who designs and marks them?
+9. How are teachers keeping the "Teacher Observation Journal"? Do you have a format for it?
 8. Have any vendors approached you about CT&AI? What did they offer, and at what price?
 9. (ICSE) Have you heard anything from CISCE about CT or AI for the younger classes?
 
@@ -100,7 +103,7 @@ Each interview should produce evidence for or against these. "Kill" means: if mo
 
 1. How long have you been teaching, and which subjects?
 2. Have you taught any CT&AI lessons yet? Tell me about the last one.
-3. What was hardest to prepare or explain?
+3. What was hardest to prepare or explain? How do your students find the handbook puzzles: too easy, about right, or too hard? Have you tried the handbook activities, such as "Coin Flip Magic" or the "Sorting Network" in Class 4? How did they go?
 4. How much time do you have to plan a new lesson in a typical week?
 5. Have you used any computer or tablet activities with your class? What happened?
 
