@@ -17,13 +17,18 @@ Each interview should produce evidence for or against these. "Kill" means: if mo
 | H1 | CBSE schools are implementing CT&AI for Classes 3-8 in 2026-27 | Most CBSE schools have timetabled it, at least for some classes | Most treat the "advised" circular as optional and have done nothing |
 | H2 | Schools struggle to deliver it with the teachers they have | Coordinators name teacher capacity, lesson planning or assessment as the problem | Schools say the free CBSE books are enough |
 | H3 | Principals will pay for a product that sits alongside the free CBSE books | They name a budget line and a price range without prompting, or accept one of the price anchors | "We only use free material" from most schools in the target fee tiers |
-| H4 | Rs 200-800 per student per year is an acceptable price | Most schools put their ceiling inside or above that range | Ceilings consistently below Rs 200 |
+| H4 | A Rs 300-600 package is an acceptable price (a Rs 449 or Rs 599 booklist pack, or a Rs 299 + GST school licence) | Most mid- and premium-tier schools put their ceiling at or above Rs 300 for at least one package | Ceilings consistently below Rs 300 |
 | H5 | Unplugged-first lessons with optional devices fit the schools' real equipment | Device audits show a lab shared across many classes, or a projector only | Every school has 1:1 devices (then unplugged-first matters less) |
 | H6 | A maths teacher can run one level in one period with a script and no training | The paper-prototype walkthrough is completed within a period, with only minor questions | Teachers say they can't run it without a CS teacher |
 | H7 | Assessment and reporting are a reason to buy | Coordinators want class dashboards and report-card-ready grades | Schools don't assess CT&AI at all |
 | H8 | ICSE schools have a similar need for Classes 1-8 | ICSE heads describe a Computer Studies gap or want CT&AI alignment | ICSE schools are happy with their publisher's textbook |
 | H9 | Schools want a structured route from Scratch to Python for Classes 6-10, because CBSE has no programming subject until Class 11 | Computer teachers or coordinators say students reach Class 11 Python unprepared, or ask for Python before Class 11 | Schools are content with Scratch until Class 11 |
 | H10 | The parts CBSE didn't provide are what schools struggle with: coding, the 40-hour Classes 6-8 projects, hands-on AI, and the observation journal | Coordinators or computer teachers name one of these as unsolved, without being prompted | Schools say the free handbooks cover what they need |
+| H11 | Schools will put a CT&AI workbook with app access on the booklist | Principals name the booklist as the route for computer and CT material | New booklist items are blocked and there is no school budget |
+| H12 | Schools will replace their current Computers book with a combined "Computers and CT&AI" pack | Principals name the book they would drop | Schools are locked into a multi-year series |
+| H13 | Student-data handling matters to buyers | Coordinators raise data or consent unprompted, or have vendor requirements | Nobody cares; compliance is then a cost, not a selling point |
+
+*H4 was revised and H11-H13 added on 6 November 2026, after the [competitors, buying and compliance research](reports/CT%20kit%20competitors%20buying%20and%20compliance.md). Printed CBSE CT&AI books already sell at Rs 179-630 and Uolo's Tekie starts at Rs 799, so the bare Rs 200/500/800 anchors were replaced with package anchors.*
 
 ## Who to interview
 
@@ -63,25 +68,26 @@ Each interview should produce evidence for or against these. "Kill" means: if mo
 
 **Context (5 min)**
 1. Tell me about the school: board, number of students, Classes covered, fees roughly.
-2. Who decides which books and digital products the school buys, and when?
+2. Who decides which books and digital products the school buys, and when? Who signs the book list that goes on your website, and does a fee committee review it?
 
 **CT&AI and computing today (10 min)**
 
 3. How are you handling CBSE's Computational Thinking and AI curriculum this year? (ICSE: How do you teach computers in Classes 1-8?)
-4. What do you use for computer classes now: a textbook series, a platform, anything else? What does it cost?
+4. Which Computers and CT&AI books are on your 2026-27 book list, from which publisher, and at what price? Did you consider Oxford, Goyal or Uolo's Tekie? Do you use any platform?
 5. What's working, and what isn't?
 
 **Buying and budget (10 min)**
 
 6. Walk me through the last time you bought a new academic product. Who was involved, and how long did it take?
-7. When do your book and resource lists close for the next session?
-8. Is the cost of products like this passed on to parents in fees, or paid from the school budget?
-9. **Price anchors:** "Some products like this cost about Rs 200, Rs 500 or Rs 800 per student per year. Which of those would be easy, hard or impossible for your school?" Note the reaction, not just the answer.
+7. When do your book and resource lists close for the next session? How do publishers usually work with you: specimen copies, training, terms? By when must specimens reach you? *(Ask neutrally; don't ask about commissions.)*
+8. Which fee heads do you charge, such as computer, smart class or activity? Would a new product go on the book list, come out of an existing fee, or come out of the school budget? Has a fee committee or parent body ever questioned a charge?
+9. Do parents buy books from the school, a named shop, or anywhere they like?
+10. **Price anchors (packages):** "Products like this come as a Rs 300 school licence plus GST, a Rs 450-600 workbook with app access on the book list, or an Rs 800 book-plus-platform with training. Which would be easy, hard or impossible for your school?" Then: "Would it replace your current computer book or sit alongside it?" Note the reaction, not just the answer.
 
 **Close (5 min)**
 
-10. If you could fix one thing about how computing or CT&AI is taught here, what would it be?
-11. Who else here should I talk to? Would you be open to a free pilot in one or two sections next session?
+11. If you could fix one thing about how computing or CT&AI is taught here, what would it be?
+12. Who else here should I talk to? Would you be open to a free pilot in one or two sections next session?
 
 ### 2. CBSE / academic coordinator (30-40 min)
 
@@ -89,14 +95,15 @@ Each interview should produce evidence for or against these. "Kill" means: if mo
 2. Who teaches it in Classes 3-5? In Classes 6-8?
 3. Are you using the free CBSE CT&AI student and teacher books, which follow the NCERT maths chapters? How are teachers finding them?
 4. Did teachers attend any CBSE training for CT&AI this year, such as the district or regional workshops, a lead-school session or the DD PM e-Vidya videos? Was it useful?
-5. How is CT&AI being assessed? How does it appear on report cards?
+5. How is CT&AI being assessed? CBSE hasn't published marks weightage or a report-card format. What will appear on this year's report card?
 6. What do parents ask about it?
 7. What would make it easier to deliver: lesson plans, worksheets, a platform, training, assessment tools?
 8. The handbooks have no project materials, but Classes 6-8 have 40 hours of projects. What are students doing for their projects? Who designs and marks them? CBSE promised a project list with rubrics: has the school received it?
 9. CBSE's webinar says the curriculum needs "no coding/software". Does the school plan to teach Scratch or any coding in Classes 3-8 anyway? Why or why not?
 10. How are teachers keeping the "Teacher Observation Journal"? Do you have a format for it?
-11. Have any vendors approached you about CT&AI? What did they offer, and at what price?
-12. (ICSE) Have you heard anything from CISCE about CT or AI for the younger classes?
+11. Have any vendors approached you about CT&AI, such as Oxford, Goyal, Uolo Tekie, STEMpedia, LEAD, Thinking Juggernaut, PiyushAI or Scaleopal? What did they offer, and at what price?
+12. When an app needs student logins, who creates them and what details does the school share? Does the school take parent consent for apps? Has anyone raised the DPDP Act (India's data-protection law)?
+13. (ICSE) Have you heard anything from CISCE about CT or AI for the younger classes?
 
 ### 3. Class 3-5 maths or EVS teacher (40 min)
 
@@ -137,6 +144,7 @@ Show a printed **Band B, Level B3 (conditionals)** lesson that follows the PRIMM
 7. CBSE gives computer teachers the AI-literacy part of CT&AI in Classes 6-8, and has them assess the projects. Are you doing that this year? With which tools, and how is it going? (The Class 8 handbook has three Teachable Machine labs: a waste classifier, voice commands and a cat/dog bias test. Has anyone run them? Do you have the webcams, microphones and internet they need?)
 8. When do students first write Python or another text language? CBSE's Computer Applications has none before Class 11. Do you teach any earlier? How do students cope with Class 11 Python?
 9. What do students find hardest when they move from blocks to typing code?
+10. How do students log in to any platform today: roll number, school email, or a parent's phone?
 
 ### 5. Parents (optional, 15 min)
 
@@ -144,7 +152,8 @@ Show a printed **Band B, Level B3 (conditionals)** lesson that follows the PRIMM
 2. What do you want them to learn about computers and AI over the next few years?
 3. Have you ever paid for coding classes or apps outside school? Why did you stop or continue?
 4. If the school's program had a home practice part, how much would you pay a month, if anything?
-5. What would make you trust an education app?
+5. What would make you trust an education app? Would you be comfortable with the school giving an app your child's class and roll number? Do you use DigiLocker?
+6. Where did you buy this year's books: the school, a named shop, or anywhere?
 
 ## Note template
 
@@ -164,7 +173,10 @@ Copy this for each interview and save as `docs/research/interviews/<school-code>
 - CT&AI timetabled: yes / no / partly (Classes: )
 - Current product and cost:
 - Book list closes:
-- Price-anchor reaction (200 / 500 / 800):
+- Price-anchor reaction (Rs 300 licence / Rs 450-600 booklist pack / Rs 800 platform):
+- Replace current Computers book or add alongside:
+- Book list signed by / fee committee review:
+- Student logins and parent consent today:
 - Devices (from audit):
 
 ## Hypothesis evidence
@@ -185,7 +197,7 @@ Copy this for each interview and save as `docs/research/interviews/<school-code>
 
 *CBSE facts used in this plan were checked against the official documents on 5 Nov 2026; see [CBSE verification](cbse-verification.md).*
 
-**Decision rule:** go ahead with a December pilot offer if H1, H2 and H3 are supported in at least half of the CBSE schools and H4 holds in the mid and premium tiers. If H1 fails, the product shouldn't depend on the CBSE circular: revisit the parent channel and the ICSE and state-board angles.
+**Decision rule:** go ahead with a December pilot offer if H1, H2 and H3 are supported in at least half of the CBSE schools, H4 holds in the mid and premium tiers, and H11 (the booklist route) holds in at least half of mid- and premium-tier schools. If H1 fails, the product shouldn't depend on the CBSE circular: revisit the parent channel and the ICSE and state-board angles.
 
 ## Timeline
 
