@@ -19,6 +19,22 @@ if raw and raw[0].strip() == "---":
         k, _, v = ln.partition(":")
         fm[k.strip()] = v.strip()
     body = raw[end + 1:]
+
+
+def expand(lines, base, depth=0):
+    """Replace [[INCLUDE relative/path.md]] lines with that file's lines (shared sections)."""
+    out = []
+    for ln in lines:
+        m = re.fullmatch(r"\s*\[\[INCLUDE\s+(.+?)\]\]\s*", ln)
+        if m and depth < 3:
+            inc = (base / m.group(1)).resolve()
+            out += expand(inc.read_text(encoding="utf-8").splitlines(), inc.parent, depth + 1)
+        else:
+            out.append(ln)
+    return out
+
+
+body = expand(body, pathlib.Path(MD).resolve().parent)
 split = lambda v: [x.strip() for x in v.split("|")] if v else []
 
 KitDoc = make_doc_class(globals(), fm.get("header", "Proposal"), fm.get("kicker", "CODESCHOOL"),
@@ -78,9 +94,9 @@ def response_form():
 
 story = [Spacer(1, 1), NextPageTemplate("body"), PageBreak()]
 toc = TableOfContents(); toc.levelStyles = [TOC0, TOC1]; toc.dotsMinLevel = 0
-story += [H("Contents", 0, "contents", "Contents"), Spacer(1, 4), toc,
-          Spacer(1, 10),
-          callout([P(fm.get("draftnote", "Draft for discussion. Scope, timeline and prices will be finalised with the school."))], "warn", "Draft")]
+story += [H("Contents", 0, "contents", "Contents"), Spacer(1, 4),
+          callout([P(fm.get("draftnote", "Draft for discussion. Scope, timeline and prices will be finalised with the school."))], "warn", "Draft"),
+          Spacer(1, 8), toc]
 
 buf, tbl, n, first = [], [], 0, True
 def flush():
