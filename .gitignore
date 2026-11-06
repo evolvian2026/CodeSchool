@@ -2,3 +2,7 @@
 # or school details out of Git.
 docs/research/interviews/
 *.private.*
+
+# Python cache
+__pycache__/
+*.pyc
