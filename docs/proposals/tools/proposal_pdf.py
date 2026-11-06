@@ -63,8 +63,31 @@ def ptable(lines):
             continue
         rows.append(cells)
     n = len(rows[0])
-    lens = [min(max(max(len(r[i]) if i < len(r) else 0 for r in rows), 18 if i == 0 else 8), 140) for i in range(n)]
-    widths = [l / sum(lens) for l in lens]
+    plain = lambda c: re.sub(r"\]\([^)]*\)", "]", c).replace("**", "").replace("[", "").replace("]", "")
+    lens = [min(max(max(len(plain(r[i])) if i < len(r) else 0 for r in rows), 18 if i == 0 else 8), 140) for i in range(n)]
+    # Minimum width per column: its longest single word in the bold header/first-column font, plus padding,
+    # so narrow columns never break words mid-way.
+    from reportlab.pdfbase.pdfmetrics import stringWidth
+    def wordw(c, st):
+        return max((stringWidth(w, st.fontName, st.fontSize) for w in plain(c).split()), default=0)
+    minw = [max(wordw(r[i], HEADC if ri == 0 else (CELLB if i == 0 else CELL)) if i < len(r) else 0
+                for ri, r in enumerate(rows)) + 12 for i in range(n)]
+    widths = [l / sum(lens) * CW for l in lens]
+    for _ in range(n):
+        short = [i for i in range(n) if widths[i] < minw[i] - 0.01]
+        if not short:
+            break
+        fixed = set(short) | {i for i in range(n) if widths[i] <= minw[i] + 0.01}
+        for i in short:
+            widths[i] = minw[i]
+        free = [i for i in range(n) if i not in fixed]
+        spare = CW - sum(widths[i] for i in fixed)
+        tot = sum(lens[i] for i in free)
+        if not free or spare <= 0:
+            break
+        for i in free:
+            widths[i] = max(spare * lens[i] / tot, minw[i])
+    widths = [w / CW for w in widths]
     data = [[Paragraph(inline(c), HEADC if ri == 0 else (CELLB if ci == 0 else CELL)) for ci, c in enumerate(r)] + [""] * (n - len(r))
             for ri, r in enumerate(rows)]
     t = Table(data, colWidths=[w * CW for w in widths], repeatRows=1)
@@ -95,7 +118,7 @@ def response_form():
 story = [Spacer(1, 1), NextPageTemplate("body"), PageBreak()]
 toc = TableOfContents(); toc.levelStyles = [TOC0, TOC1]; toc.dotsMinLevel = 0
 story += [H("Contents", 0, "contents", "Contents"), Spacer(1, 4),
-          callout([P(fm.get("draftnote", "Draft for discussion. Scope, timeline and prices will be finalised with the school."))], "warn", "Draft"),
+          callout([P(fm.get("draftnote", "Draft for discussion. Scope, timeline and prices will be finalised with the school."))], fm.get("notekind", "warn"), fm.get("notelabel", "Draft")),
           Spacer(1, 8), toc]
 
 buf, tbl, n, first = [], [], 0, True
