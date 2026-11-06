@@ -72,4 +72,6 @@ _Add setup and run instructions here once the project has code._
 
 ## License
 
-_Choose a license (for example MIT) and add a `LICENSE` file._
+Copyright (c) 2026 Bullseye Knowledge System Limited. All rights reserved.
+
+This is proprietary material. No part of it may be copied, modified or distributed without the written permission of Bullseye Knowledge System Limited. See [LICENSE](LICENSE).
