@@ -27,6 +27,12 @@ Foundational curriculum and market research (no code yet):
 - [School interview plan](docs/research/school-interview-plan.md): hypotheses, sample, interview guides and timeline for validating the research with schools.
 - [Interview materials](docs/research/interview-materials/): intro letter, Level B3 paper prototype, device audit sheet and tracking sheet.
 
+## School proposals (drafts)
+
+- [Offline Programme proposal (PDF)](docs/proposals/CodeSchool-Proposal-Offline.pdf): printed workbooks, unplugged kits and teacher scripts; no student devices.
+- [Online Programme proposal (PDF)](docs/proposals/CodeSchool-Proposal-Online.pdf): app and browser on shared school devices, teacher dashboard, report-card export.
+- Editable markdown sources and regeneration steps: [docs/proposals/](docs/proposals/README.md).
+
 ## Getting started
 
 ```bash
