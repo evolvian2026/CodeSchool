@@ -3,7 +3,7 @@ header: Offline Programme Proposal (Draft)
 kicker: CODESCHOOL  ·  PROPOSAL FOR [SCHOOL NAME]  ·  DRAFT
 title: Offline Programme
 lines: Computational Thinking, coding and AI for Classes 3-8, | delivered with printed workbooks, unplugged kits and | teacher scripts. No student devices needed.
-meta: Prepared for: [Principal name], [School name], [City] | Prepared by Anoop Dobhal, CodeSchool  ·  [Phone]  ·  [Email] | Draft version 0.2  ·  6 November 2026 | Aligned to CBSE's CT&AI curriculum for Classes 3-8 (2026-27)
+meta: Prepared for: [Principal name], [School name], [City] | Prepared by Anoop Dobhal, CodeSchool (Bullseye Knowledge System Limited)  ·  [Phone]  ·  [Email] | Draft version 0.2  ·  6 November 2026 | Aligned to CBSE's CT&AI curriculum for Classes 3-8 (2026-27)
 draftnote: This is a draft for discussion with [School name]. Scope, timeline and prices are indicative and will be finalised after the pilot discussion. Nothing in this document is a commitment until both sides sign an agreement. A separate Online Programme proposal is available for schools with shared devices.
 ---
 
@@ -23,7 +23,7 @@ We would welcome your feedback on this draft and would be glad to meet you and y
 
 Warm regards,
 
-**Anoop Dobhal**, CodeSchool  ·  [Phone]  ·  [Email]
+**Anoop Dobhal**, CodeSchool, Bullseye Knowledge System Limited  ·  [Phone]  ·  [Email]
 
 ## 1. Proposal at a glance
 
@@ -42,7 +42,7 @@ Warm regards,
 
 ## 2. About CodeSchool
 
-CodeSchool is an Indian education start-up building a level-based programme that helps schools teach computational thinking, coding and AI in Classes 3-8. The programme is being designed specifically for CBSE's 2026-27 CT&AI curriculum and for real Indian classrooms, where many schools have few computers and teachers have little preparation time.
+CodeSchool is a level-based programme being developed by **Bullseye Knowledge System Limited** to help schools teach computational thinking, coding and AI in Classes 3-8. The programme is being designed specifically for CBSE's 2026-27 CT&AI curriculum and for real Indian classrooms, where many schools have few computers and teachers have little preparation time.
 
 Our design is based on:
 
@@ -371,8 +371,8 @@ Many schools may prefer a **hybrid**: the Offline Programme in Classes 3-5 and t
 - This proposal assumes the school follows CBSE's CT&AI curriculum and the NCERT mathematics textbooks for Classes 3-8.
 - Pilot dates assume a signed pilot letter by mid-December 2026.
 - Prices are indicative until confirmed in writing after the pilot.
-- CodeSchool retains ownership of its materials; the school may use them for its own students during the agreement.
-- Formal terms, including any data-related terms, will be set out in a separate agreement.
+- Bullseye Knowledge System Limited, which develops CodeSchool, owns the copyright and all other rights in the CodeSchool materials; the school may use them for its own students during the agreement.
+- Formal terms, including any data-related terms, will be set out in a separate agreement between the school and Bullseye Knowledge System Limited.
 - "CodeSchool" is the programme's working name.
 
 ## 25. Glossary
@@ -409,3 +409,5 @@ Many schools may prefer a **hybrid**: the Offline Programme in Classes 3-5 and t
 [[INCLUDE shared/assessment-lesson-teachers.md]]
 
 **Contact:** Anoop Dobhal, CodeSchool  ·  Phone / WhatsApp: [Phone]  ·  Email: [Email]
+
+© 2026 Bullseye Knowledge System Limited. All rights reserved. No part of this proposal may be copied or distributed without the written permission of Bullseye Knowledge System Limited.
