@@ -2,11 +2,21 @@
 
 CodeSchool is a project by [evolvian2026](https://github.com/evolvian2026).
 
-> _Add a one-line description of what CodeSchool does and who it is for._
+> A level-based programme that helps Indian schools teach computational thinking, coding and AI in Classes 3-8, built for CBSE's new CT&AI curriculum.
 
 ## Overview
 
-_Describe the problem CodeSchool solves and its main features._
+From the 2026-27 session, CBSE asks schools to teach Computational Thinking and AI (CT&AI) in Classes 3-8: 50 hours a year in Classes 3-5 and 100 hours a year in Classes 6-8, including 40 hours of projects. CBSE's free handbooks provide puzzles that follow the NCERT maths chapters, but they include no coding, no project materials or rubrics, little hands-on AI and no way to track progress.
+
+CodeSchool fills those gaps, chapter by chapter, alongside CBSE's books:
+
+- **Levels for every maths chapter**, from warm-ups with hints to "now you build it" coding challenges.
+- **Two ways to deliver:** an **Offline Programme** (printed workbooks, unplugged kits and teacher scripts, with no student devices) and an **Online Programme** (an app and browser platform on shared school devices, with automatic checking).
+- **Hands-on AI** for Classes 6-8, and **project kits** with rubrics for the 40 project hours.
+- **Teacher support:** period-by-period scripts, orientation, and an observation journal or dashboard that produces report-card summaries.
+- **Child data by design:** no student data offline; school-controlled roll-number accounts online.
+
+**Status:** research stage. No code yet. Next comes interviewing 15-20 schools (November-December 2026), followed by a free pilot in January-March 2027.
 
 ## Research
 
@@ -44,7 +54,15 @@ _Add setup and run instructions here once the project has code._
 
 ## Project structure
 
-_List the main folders and what each one contains._
+| Folder | Contents |
+|---|---|
+| `docs/research/` | Research PDFs, the tracker workbook, CBSE verification and handbook review, and the school interview plan |
+| `docs/research/reports/` | Full research reports in markdown, with citations |
+| `docs/research/research_notes/` | Source notes behind each report |
+| `docs/research/interview-materials/` | Intro letter, paper prototype lesson, device audit sheet and tracking template |
+| `docs/proposals/` | Offline and Online school proposals (PDF and editable markdown) |
+| `docs/proposals/shared/` | Appendices shared by both proposals |
+| `docs/proposals/tools/` | Converter that turns the proposal markdown into PDFs |
 
 ## Contributing
 
