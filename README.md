@@ -54,6 +54,7 @@ Illustrated workbooks that follow the NCERT maths chapters in the same order as 
 |---|---|---|---|
 | 3 | [Think Like a Coder, Class 3 (PDF, 49 pp)](docs/books/CodeSchool-Class3-Think-Like-a-Coder.pdf) | [Class 3 specimen (PDF, 24 pp)](docs/books/CodeSchool-Class3-Specimen-Booklet.pdf) | [class3/content.py](docs/books/class3/content.py) |
 | 4 | [Think Like a Coder, Class 4 (PDF, 50 pp)](docs/books/CodeSchool-Class4-Think-Like-a-Coder.pdf) | [Class 4 specimen (PDF, 24 pp)](docs/books/CodeSchool-Class4-Specimen-Booklet.pdf) | [class4/content.py](docs/books/class4/content.py) |
+| 5 | [Think Like a Coder, Class 5 (PDF, 53 pp)](docs/books/CodeSchool-Class5-Think-Like-a-Coder.pdf) | [Class 5 specimen (PDF, 24 pp)](docs/books/CodeSchool-Class5-Specimen-Booklet.pdf) | [class5/content.py](docs/books/class5/content.py) |
 
 Build them with the shared tools (the number is the class):
 

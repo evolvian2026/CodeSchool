@@ -234,7 +234,10 @@ class Banner(Flowable):
         while pdfmetrics.stringWidth(title, "KidBl", size) > CW - 215 and size > 14:  # shrink long titles to clear Robo
             size -= 1
         c.setFont("KidBl", size); c.drawString(100, 54, title)
-        c.setFont("KidB", 11.5); c.drawString(100, 30, "Coder skill: " + ch["skill"])
+        skill = "Coder skill: " + ch["skill"]; ssize = 11.5
+        while pdfmetrics.stringWidth(skill, "KidB", ssize) > CW - 215 and ssize > 8:  # shrink long skill lines to clear Robo
+            ssize -= 0.5
+        c.setFont("KidB", ssize); c.drawString(100, 30, skill)
         c.setFont("Kid", 9); c.drawString(100, 13, f"Goes with {META['textbook_short']}, chapter {ch['n']}")
         c.restoreState()
         r = F.robo(70, color=C("#FFFFFF") if False else F.YELLOW, wave=True)
@@ -429,8 +432,10 @@ def front_matter():
         return [P(f"<font color='{ch['color']}'><b>{ch['n']}</b></font>", "q", fontSize=10), P(ch["skill"], "body", fontSize=9.5, leading=12, spaceAfter=0), P(ch["level"], "small", fontSize=8)]
     hdr = [P("<b>Ch</b>", "small"), P("<b>Coder skill</b>", "small"), P("<b>Level</b>", "small")]
     skills = [hdr + hdr]
-    for i in range(7):
-        skills.append(cells(CH[i]) + cells(CH[i + 7]))
+    half_n = (len(CH) + 1) // 2  # two columns; works for any number of chapters
+    for i in range(half_n):
+        right = cells(CH[i + half_n]) if i + half_n < len(CH) else ["", "", ""]
+        skills.append(cells(CH[i]) + right)
     half = (CW - 12) / 2
     st = Table(skills, colWidths=[28, half - 70, 42, 28, half - 70, 42])
     st.setStyle(TableStyle([("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, C("#F3F6FB")]), ("LINEBELOW", (0, 0), (-1, 0), 1, C("#14A3A3")),
