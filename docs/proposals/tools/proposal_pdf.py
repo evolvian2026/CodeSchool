@@ -125,7 +125,10 @@ buf, tbl, n, first = [], [], 0, True
 def flush():
     global buf
     if buf:
-        story.append(Paragraph(inline(" ".join(x.strip() for x in buf)), BODY)); buf = []
+        text = " ".join(x.strip() for x in buf)
+        if text.startswith("**Table "):
+            story.append(CondPageBreak(35 * mm))  # keep a table caption with the start of its table
+        story.append(Paragraph(inline(text), BODY)); buf = []
 def flush_tbl():
     global tbl
     if tbl:
