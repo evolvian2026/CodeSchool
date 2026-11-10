@@ -46,6 +46,10 @@ Foundational curriculum and market research (no code yet):
 
 - **[April 2027 launch plan (PDF)](docs/plan/CodeSchool-April-2027-Launch-Plan.pdf)** ([markdown](docs/plan/April-2027-launch-plan.md)): a dated plan worked back from the first day of the 2027-28 session. Launch scope: the full range for all six classes (decided 10 November 2026), with a content production plan and a 15 January checkpoint. It also covers the specimen format and online timing decisions due by 20 November, specimens by 15 December, booklist adoption, the pilot, orders, print and kits by 15 March, and teacher orientation, with owners, budget and risks.
 
+## Sample book
+
+- **[Think Like a Coder, Class 3 (PDF)](docs/books/CodeSchool-Class3-Think-Like-a-Coder.pdf)**: a 49-page illustrated sample workbook that follows the 14 chapters of NCERT *Maths Mela* Class 3 (the same order as CBSE's 2026-27 CT&AI Class 3 handbook). Each chapter has theory (Learn), a worked example, five practice questions, a coding-on-paper task, a challenge and a self-check, plus answers, a glossary and cut-out code cards. All questions are original. Build it with `python -P -E docs/books/class3/build_book.py`.
+
 ## School proposals (drafts)
 
 - [Offline Programme proposal (PDF)](docs/proposals/CodeSchool-Proposal-Offline.pdf): printed workbooks, unplugged kits and teacher scripts; no student devices.
