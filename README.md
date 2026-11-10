@@ -48,13 +48,14 @@ Foundational curriculum and market research (no code yet):
 
 ## Sample books
 
-Illustrated workbooks that follow the NCERT maths chapters in the same order as CBSE's 2026-27 CT&AI handbooks. Each chapter has theory (Learn), a worked example, five practice questions, a coding-on-paper task, a challenge, a self-check and a coder fact, plus answers, a glossary and cut-out code cards. All questions are original. Each class also has a 24-page specimen booklet for school visits (programme overview, three full chapters, a sample teacher script, the classroom kit, assessment, a note for parents and next steps).
+Illustrated workbooks that follow the NCERT maths chapters in the same order as CBSE's 2026-27 CT&AI handbooks. Each chapter has theory (Learn), a worked example, five practice questions, a coding-on-paper task, a challenge, a self-check and a coder fact, plus answers, a glossary and cut-out code cards. All questions are original. The Class 6 book adds CBSE's four AI chapters (taught with unplugged activities) and two 20-hour projects with plans, data sheets and rubrics, covering CBSE's 100 hours a year for Class 6 (40 CT, 20 AI, 40 projects). Each class also has a 24-page specimen booklet for school visits (programme overview, three full units, a sample teacher script, the classroom kit, assessment, a note for parents and next steps); the Class 6 specimen shows a CT chapter, an AI chapter and a full project.
 
 | Class | Full book | Specimen booklet | Content |
 |---|---|---|---|
 | 3 | [Think Like a Coder, Class 3 (PDF, 49 pp)](docs/books/CodeSchool-Class3-Think-Like-a-Coder.pdf) | [Class 3 specimen (PDF, 24 pp)](docs/books/CodeSchool-Class3-Specimen-Booklet.pdf) | [class3/content.py](docs/books/class3/content.py) |
 | 4 | [Think Like a Coder, Class 4 (PDF, 50 pp)](docs/books/CodeSchool-Class4-Think-Like-a-Coder.pdf) | [Class 4 specimen (PDF, 24 pp)](docs/books/CodeSchool-Class4-Specimen-Booklet.pdf) | [class4/content.py](docs/books/class4/content.py) |
 | 5 | [Think Like a Coder, Class 5 (PDF, 53 pp)](docs/books/CodeSchool-Class5-Think-Like-a-Coder.pdf) | [Class 5 specimen (PDF, 24 pp)](docs/books/CodeSchool-Class5-Specimen-Booklet.pdf) | [class5/content.py](docs/books/class5/content.py) |
+| 6 | [Think Like a Coder, Class 6 (PDF, 57 pp)](docs/books/CodeSchool-Class6-Think-Like-a-Coder.pdf) | [Class 6 specimen (PDF, 24 pp)](docs/books/CodeSchool-Class6-Specimen-Booklet.pdf) | [class6/content.py](docs/books/class6/content.py) |
 
 Build them with the shared tools (the number is the class):
 

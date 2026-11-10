@@ -26,6 +26,19 @@ CLASS = int(sys.argv[1]) if len(sys.argv) > 1 and sys.argv[1].isdigit() else 3
 _spec = importlib.util.spec_from_file_location(f"content_class{CLASS}", BOOKS / f"class{CLASS}" / "content.py")
 _content = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(_content)
 CH, FACTS, META = _content.CH, _content.FACTS, _content.META
+PROJECTS = getattr(_content, "PROJECTS", [])  # optional project units (Classes 6-8)
+
+
+def ch_label(ch):
+    return ch.get("toc", f"{ch['n']}. {ch['title']}")
+
+
+def ch_badge(ch):
+    return ch.get("badge", str(ch["n"]))
+
+
+def ch_short(ch):
+    return ch.get("short", f"Ch {ch['n']}")
 
 FONTS = pathlib.Path("C:/Windows/Fonts")
 for name, fn in [("Kid", "segoeui.ttf"), ("KidB", "segoeuib.ttf"), ("KidBl", "seguibl.ttf"), ("KidI", "segoeuii.ttf"),
@@ -146,9 +159,9 @@ def options(opts, color):
     return t
 
 
-def data_table(rows, color, blanks=True):
+def data_table(rows, color, blanks=True, widths=None):
     t = Table([[P(c, "q", fontName="KidB" if i == 0 else "Kid", fontSize=10.5) for c in r] for i, r in enumerate(rows)],
-              colWidths=[60, 170, 90])
+              colWidths=widths or [60, 170, 90])
     t.setStyle(TableStyle([("GRID", (0, 0), (-1, -1), 0.8, C("#B8C2D3")), ("BACKGROUND", (0, 0), (-1, 0), tint(color, 0.7)),
                            ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white]), ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
                            ("TOPPADDING", (0, 0), (-1, -1), 4), ("BOTTOMPADDING", (0, 0), (-1, -1), 4)]))
@@ -228,22 +241,23 @@ class Banner(Flowable):
         for x, y, r in ((CW - 140, 96, 26), (CW - 60, 18, 18), (40, 104, 12), (300, 6, 14)):
             c.circle(x, y, r, stroke=0, fill=1)
         c.setFillColor(colors.white); c.circle(52, 56, 34, stroke=0, fill=1)
-        c.setFillColor(col); c.setFont("KidBl", 30); c.drawCentredString(52, 45, str(ch["n"]))
-        c.setFillColor(colors.white); c.setFont("KidB", 10); c.drawString(100, 86, f"CHAPTER {ch['n']}  ·  LEVEL {ch['level']}")
+        bd = ch_badge(ch); bs = 30 if len(bd) <= 2 else 22
+        c.setFillColor(col); c.setFont("KidBl", bs); c.drawCentredString(52, 56 - bs * 0.36, bd)
+        c.setFillColor(colors.white); c.setFont("KidB", 10); c.drawString(100, 86, ch.get("kicker", f"CHAPTER {ch['n']}") + f"  ·  LEVEL {ch['level']}")
         title = ch["title"]; size = 26
         while pdfmetrics.stringWidth(title, "KidBl", size) > CW - 215 and size > 14:  # shrink long titles to clear Robo
             size -= 1
         c.setFont("KidBl", size); c.drawString(100, 54, title)
-        skill = "Coder skill: " + ch["skill"]; ssize = 11.5
+        skill = ch.get("skill_prefix", "Coder skill: ") + ch["skill"]; ssize = 11.5
         while pdfmetrics.stringWidth(skill, "KidB", ssize) > CW - 215 and ssize > 8:  # shrink long skill lines to clear Robo
             ssize -= 0.5
         c.setFont("KidB", ssize); c.drawString(100, 30, skill)
-        c.setFont("Kid", 9); c.drawString(100, 13, f"Goes with {META['textbook_short']}, chapter {ch['n']}")
+        c.setFont("Kid", 9); c.drawString(100, 13, ch.get("source", f"Goes with {META['textbook_short']}, chapter {ch['n']}"))
         c.restoreState()
         r = F.robo(70, color=C("#FFFFFF") if False else F.YELLOW, wave=True)
         r.drawOn(c, CW - 86, 18)
-        self.canv._doctemplate.notify("TOCEntry", (0, f"{ch['n']}. {ch['title']}", self.canv.getPageNumber(), f"ch{ch['n']}"))
-        c.bookmarkPage(f"ch{ch['n']}"); c.addOutlineEntry(f"{ch['n']}. {ch['title']}", f"ch{ch['n']}", level=0)
+        self.canv._doctemplate.notify("TOCEntry", (0, ch_label(ch), self.canv.getPageNumber(), f"ch{ch['n']}"))
+        c.bookmarkPage(f"ch{ch['n']}"); c.addOutlineEntry(ch_label(ch), f"ch{ch['n']}", level=0)
 
 
 def robo_says(text, color):
@@ -307,20 +321,99 @@ def ican(items, color):
 
 
 # ------------------------------------------------------------------ chapter
-def chapter_story(ch):
-    col = ch["color"]
-    s = [NextPageTemplate("body"), PageBreak(), SetChapter(ch), Banner(ch), Spacer(1, 10)]
-    learn = [P(t) for t in ch["learn"]] + [Spacer(1, 6), word_chips(ch["words"], col)]
-    s += [box(learn, col, "Learn", icon("bulb")), Spacer(1, 8), robo_says(ch["robo"], col), Spacer(1, 8)]
-    ex = ch["example"]
+def example_box(ex, col, title="Example"):
     exs = [P(f"<b>{ex['title']}</b>", "q")]
     for k, st in enumerate(ex["steps"], 1):
         exs.append(P(f"<font name='KidBl' color='{col}'>{k}.</font>&nbsp; {st}", "body", leftIndent=14, firstLineIndent=-14))
     if ex.get("fig"):
         exs += [Spacer(1, 6), ex["fig"]()]
     if ex.get("table"):
-        exs += [Spacer(1, 6), data_table(ex["table"], col)]
-    s += [box(exs, "#F5A524" if col != "#F5A524" else "#E5484D", "Example", icon("eye"))]
+        exs += [Spacer(1, 6), data_table(ex["table"], col, widths=ex.get("widths"))]
+    return box(exs, "#F5A524" if col != "#F5A524" else "#E5484D", title, icon("eye"))
+
+
+def tickbox(size=14):
+    d = Drawing(size + 2, size + 2)
+    d.add(Rect(1, 1, size, size, rx=3, ry=3, fillColor=colors.white, strokeColor=C("#9AA5B8"), strokeWidth=1.2))
+    return d
+
+
+def score_dots(n=4, color="#14A3A3"):
+    d = Drawing(n * 17, 16)
+    for k in range(n):
+        d.add(Circle(8 + k * 17, 8, 7, fillColor=colors.white, strokeColor=C(color), strokeWidth=1.2))
+        d.add(String(8 + k * 17, 5, str(k + 1), fontName="KidB", fontSize=7.5, fillColor=C(color), textAnchor="middle"))
+    return d
+
+
+def drawspace(h, w=CW - 30):
+    d = Drawing(w, h + 2)
+    d.add(Rect(0, 0, w, h, rx=10, ry=10, fillColor=colors.white, strokeColor=C("#B8C2D3"), strokeDashArray=[4, 3]))
+    return d
+
+
+def grid_table(header, rows, widths, color, blank_rows=0, row_h=None, font=10):
+    data = [[P(f"<b>{c}</b>", "q", fontSize=font, leading=font + 3) for c in header]]
+    data += [[P(str(c), "q", fontSize=font, leading=font + 3) for c in r] for r in rows]
+    data += [[""] * len(header) for _ in range(blank_rows)]
+    t = Table(data, colWidths=widths, rowHeights=None if row_h is None else [None] + [row_h] * (len(data) - 1))
+    t.setStyle(TableStyle([("GRID", (0, 0), (-1, -1), 0.8, C("#B8C2D3")), ("BACKGROUND", (0, 0), (-1, 0), tint(color, 0.7)),
+                           ("BACKGROUND", (0, 1), (-1, -1), colors.white), ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                           ("TOPPADDING", (0, 0), (-1, -1), 3), ("BOTTOMPADDING", (0, 0), (-1, -1), 4)]))
+    return t
+
+
+def project_story(p):
+    """A 20-hour project unit: brief, plan, worked example, data sheet, design space, rubric and reflection."""
+    col = p["color"]
+    s = [NextPageTemplate("body"), PageBreak(), SetChapter(p), Banner(p), Spacer(1, 10)]
+    big = [P(p["question"], "q", fontName="KidBl", fontSize=13.5, leading=18, textColor=C(col)), Spacer(1, 4)] + [P(t) for t in p["brief"]]
+    big += [Spacer(1, 4), word_chips(p["words"], col)]
+    s += [box(big, col, "The big question", icon("bulb")), Spacer(1, 10)]
+    rows = [[P("<b>Weeks</b>", "small"), P("<b>Stage</b>", "small"), P("<b>What I do</b>", "small"), P("<b>Done</b>", "small")]]
+    for wk, stage, what in p["plan"]:
+        rows.append([P(wk, "q", fontSize=10), P(f"<font color='{col}'><b>{stage}</b></font>", "q", fontSize=10.5),
+                     P(what, "body", fontSize=10, leading=13, spaceAfter=0), tickbox()])
+    t = Table(rows, colWidths=[52, 96, CW - 52 - 96 - 40, 40])
+    t.setStyle(TableStyle([("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, C("#F3F6FB")]), ("LINEBELOW", (0, 0), (-1, 0), 1, C(col)),
+                           ("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 3), ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+                           ("ALIGN", (3, 0), (3, -1), "CENTER")]))
+    s += [KeepTogether([section_head("My project plan", col, "check"), t])]
+    # worked example and data sheet
+    s += [NextPageTemplate("body"), PageBreak(), example_box(p["example"], col, "How a coder does it"), Spacer(1, 10)]
+    sh = p["sheet"]
+    n = len(sh["header"])
+    widths = sh.get("widths", [CW / n] * n)
+    s += [KeepTogether([section_head(sh["title"], col, "pencil"), P(sh["intro"], "small"), Spacer(1, 4),
+                        grid_table(sh["header"], sh.get("rows", []), widths, col, sh.get("blank", 6), sh.get("row_h", 20))])]
+    for d in p.get("draw", []):
+        s += [Spacer(1, 10), KeepTogether([box([P(d["text"]), Spacer(1, 6), drawspace(d.get("h", 150))], "#2BB673", d["title"], icon("blocks"))])]
+    # rubric, fairness and reflection
+    s += [NextPageTemplate("body"), PageBreak(), robo_says(p["robo"], col), Spacer(1, 8), section_head("How good is my project?", col, "star"),
+          P("Score each row from 1 (just starting) to 4 (excellent). Then your teacher scores it too. Talk about any row where the scores differ.", "small"), Spacer(1, 4)]
+    rows = [[P("<b>What we check</b>", "small"), P("<b>What excellent (4) looks like</b>", "small"), P("<b>Me</b>", "small"), P("<b>Teacher</b>", "small")]]
+    for crit, good in p["rubric"]:
+        rows.append([P(f"<b>{crit}</b>", "q", fontSize=10.5, leading=13), P(good, "body", fontSize=10, leading=13, spaceAfter=0), score_dots(4, col), score_dots(4, "#5B6577")])
+    t = Table(rows, colWidths=[112, CW - 112 - 152, 76, 76])
+    t.setStyle(TableStyle([("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, C("#F3F6FB")]), ("LINEBELOW", (0, 0), (-1, 0), 1, C(col)),
+                           ("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 4), ("BOTTOMPADDING", (0, 0), (-1, -1), 5)]))
+    s += [t, Spacer(1, 10)]
+    fair = [Table([[tickbox(), P(q, "body", spaceAfter=0)]], colWidths=[24, CW - 24 - 28],
+                  style=[("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 0), ("BOTTOMPADDING", (0, 0), (-1, -1), 3)]) for q in p["ethics"]]
+    s += [KeepTogether([box(fair, "#8B5CF6", "Fair, safe and honest?", icon("check"))]), Spacer(1, 10)]
+    refl = []
+    for q in p["reflect"]:
+        refl += [P(q, "q"), lines(2, CW - 30)]
+    s += [KeepTogether([box(refl, "#14A3A3", "Looking back", icon("pencil"))])]
+    return s
+
+
+def chapter_story(ch):
+    col = ch["color"]
+    s = [NextPageTemplate("body"), PageBreak(), SetChapter(ch), Banner(ch), Spacer(1, 10)]
+    learn = [P(t) for t in ch["learn"]] + [Spacer(1, 6), word_chips(ch["words"], col)]
+    s += [box(learn, col, "Learn", icon("bulb")), Spacer(1, 8), robo_says(ch["robo"], col), Spacer(1, 8)]
+    s += [KeepTogether([example_box(ch["example"], col)])]
     fact = Table([[icon("star", "#F5A524", 26), P(f"<font name='Fun' color='{col}'>Coder fact!</font>&nbsp; " + FACTS[ch["n"]], "body")]], colWidths=[34, CW - 44])
     fact.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("BACKGROUND", (0, 0), (-1, -1), colors.white), ("BOX", (0, 0), (-1, -1), 1.2, C("#F5A524")),
                               ("ROUNDEDCORNERS", [12, 12, 12, 12]), ("LEFTPADDING", (0, 0), (-1, -1), 8), ("TOPPADDING", (0, 0), (-1, -1), 8), ("BOTTOMPADDING", (0, 0), (-1, -1), 8)]))
@@ -340,7 +433,7 @@ def chapter_story(ch):
         d = Drawing(CW - 30, 90); d.add(Rect(0, 0, CW - 30, 88, rx=10, ry=10, fillColor=colors.white, strokeColor=C("#B8C2D3"), strokeDashArray=[4, 3])); bs += [Spacer(1, 6), d]
     else:
         bs += [Spacer(1, 6), lines(3, CW - 30)]
-    s += [CondPageBreak(230), Spacer(1, 6), box(bs, "#2BB673", "Now you build it", icon("blocks")), Spacer(1, 10)]
+    s += [CondPageBreak(230), Spacer(1, 6), KeepTogether([box(bs, "#2BB673", "Now you build it", icon("blocks"))]), Spacer(1, 10)]
     chs = [P(ch["challenge"]["q"], "q"), Spacer(1, 6), lines(2, CW - 30)]
     s += [KeepTogether([box(chs, "#8B5CF6", "Challenge", icon("star"))]), Spacer(1, 10)]
     s += [KeepTogether([section_head("How did I do?", col, "check"), ican(ch["ican"], col)])]
@@ -354,7 +447,7 @@ def on_body(c, doc):
     c.saveState()
     c.setFillColor(tint(ch["color"] if ch else "#14A3A3", 0.82)); c.roundRect(LM - 10, PH - 44, CW + 20, 26, 13, stroke=0, fill=1)
     c.setFillColor(col); c.setFont("KidB", 9.5)
-    c.drawString(LM, PH - 34, f"Chapter {ch['n']}  ·  {ch['title']}" if ch else getattr(doc, "default_header", "Think Like a Coder"))
+    c.drawString(LM, PH - 34, ch.get("header", f"Chapter {ch['n']}  ·  {ch['title']}") if ch else getattr(doc, "default_header", "Think Like a Coder"))
     c.setFont("Kid", 9); c.drawRightString(PW - RM, PH - 34, f"Think Like a Coder  ·  Class {CLASS}")
     c.setFillColor(col); c.circle(PW / 2, 26, 12, stroke=0, fill=1)
     c.setFillColor(colors.white); c.setFont("KidBl", 10); c.drawCentredString(PW / 2, 22.5, str(doc.page))
@@ -375,21 +468,24 @@ def on_cover(c, doc):
     c.setFillColor(C("#FFFFFF")); c.setFont("KidB", 13); c.drawString(LM + 10, PH - 70, f"CodeSchool  ·  Class {CLASS}")
     c.setFont("KidBl", 54); c.drawString(LM + 10, PH - 150, "Think Like")
     c.drawString(LM + 10, PH - 208, "a Coder")
-    c.setFillColor(C("#FFD23F")); c.setFont("Fun", 22); c.drawString(LM + 14, PH - 246, f"Computational thinking for Class {CLASS}")
+    tag = META.get("cover_tag", f"Computational thinking for Class {CLASS}"); ts = 22
+    while pdfmetrics.stringWidth(tag, "Fun", ts) > 440 and ts > 14:  # keep clear of the orange circle
+        ts -= 0.5
+    c.setFillColor(C("#FFD23F")); c.setFont("Fun", ts); c.drawString(LM + 14, PH - 246, tag)
     c.setFillColor(colors.white); c.setFont("Kid", 13)
     c.drawString(LM + 14, PH - 274, "Learn it  ·  See it  ·  Try it  ·  Build it")
     r = F.robo(230, color=F.YELLOW, wave=True)
     r.drawOn(c, PW - 300, 250)
     # code cards row
     x = LM + 10
-    for lab, k, colr in (("Start", "step", F.BLUE), ("Repeat 3 times", "step", F.ORANGE), ("move", "right", F.BLUE), ("If dry, water", "step", F.PURPLE)):
+    for lab, k, colr in META.get("cover_cards", (("Start", "step", F.BLUE), ("Repeat 3 times", "step", F.ORANGE), ("move", "right", F.BLUE), ("If dry, water", "step", F.PURPLE))):
         w = pdfmetrics.stringWidth(lab, "KidB", 10) + (42 if k != "step" else 26)
         d = F.code_card(lab, k, w=w, h=30, color=colr); d.drawOn(c, x, 300); x += w + 8
     c.setFillColor(colors.white); c.setFont("KidB", 12)
     c.drawString(LM + 10, 190, META["cover_follows"])
     c.setFont("Kid", 11)
     c.drawString(LM + 10, 170, "Built for CBSE's Computational Thinking and AI curriculum, 2026-27")
-    c.drawString(LM + 10, 152, "Theory, worked examples, practice, coding on paper and challenges")
+    c.drawString(LM + 10, 152, META.get("cover_line", "Theory, worked examples, practice, coding on paper and challenges"))
     c.setFillColor(C("#FFD23F")); c.roundRect(LM + 10, 92, 196, 30, 15, stroke=0, fill=1)
     c.setFillColor(INK); c.setFont("KidB", 11); c.drawCentredString(LM + 108, 102, "SAMPLE EDITION  ·  DRAFT")
     c.setFillColor(colors.white); c.setFont("Kid", 8.5)
@@ -401,7 +497,7 @@ def on_cover(c, doc):
 # ------------------------------------------------------------------ front and back matter
 def front_matter():
     s = [NextPageTemplate("body"), PageBreak()]
-    s += [Spacer(1, 4), robo_says("Hello! I am <b>Robo</b>. I think like a coder, and soon you will too! In this book we will solve puzzles, crack secret codes, guide robots and write programs, all on paper.", "#14A3A3"), Spacer(1, 12)]
+    s += [Spacer(1, 4), robo_says(META.get("welcome", "Hello! I am <b>Robo</b>. I think like a coder, and soon you will too! In this book we will solve puzzles, crack secret codes, guide robots and write programs, all on paper."), "#14A3A3"), Spacer(1, 12)]
     s += [P("How this book works", "h"), Spacer(1, 6)]
     parts = [("Learn", "bulb", "#14A3A3", "Robo explains one big idea in simple words, with the new coder words to remember."),
              ("Example", "eye", "#F5A524", "A worked example shows the idea step by step."),
@@ -409,6 +505,8 @@ def front_matter():
              ("Now you build it", "blocks", "#2BB673", "Coding on paper: put code cards in order, fix bugs and write your own programs."),
              ("Challenge", "star", "#8B5CF6", "A harder puzzle for when you are ready for more."),
              ("How did I do?", "check", "#E5484D", "Colour a face to show how sure you feel.")]
+    if PROJECTS:
+        parts.append(("Projects", "bulb", "#EC4899", META.get("projects_note", "Longer projects over several weeks: plan, collect data, build, test and present.")))
     rows = []
     for name, ic, col, desc in parts:
         badge = Table([[icon(ic, "#FFFFFF", 20), P(name, "boxtitle", fontSize=11.5)]], colWidths=[24, 116])
@@ -419,23 +517,26 @@ def front_matter():
     t.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("BOTTOMPADDING", (0, 0), (-1, -1), 8), ("LEFTPADDING", (0, 0), (-1, -1), 0)]))
     s += [t, Spacer(1, 10), P("My code cards", "h"), Spacer(1, 4),
           P("Coders use cards like these. Each colour means something different. You will find cut-out cards at the back of the book.")]
-    s += code_cards([("Step: do this", "step", "#3B82F6"), ("Repeat: a loop", "loop", "#F5A524"), ("If: a decision", "if", "#8B5CF6"),
-                     ("When: an event", "event", "#E5484D"), ("move", "right", "#3B82F6")])
-    s += [Spacer(1, 12), box([P(f"Each chapter goes with the same chapter of {META['textbook_long']}, so it can be used in maths periods. "
-                                "CBSE suggests about 50 hours of computational thinking a year in Classes 3-5. The coding here needs no computer: "
-                                "children act out, write and check programs on paper, which builds the same ideas used later in block coding and AI. "
+    s += code_cards(META.get("front_cards", [("Step: do this", "step", "#3B82F6"), ("Repeat: a loop", "loop", "#F5A524"), ("If: a decision", "if", "#8B5CF6"),
+                     ("When: an event", "event", "#E5484D"), ("move", "right", "#3B82F6")]))
+    s += [Spacer(1, 12), box([P(META.get("chapters_note", f"Each chapter goes with the same chapter of {META['textbook_long']}, so it can be used in maths periods. ")
+                                + META.get("hours_note", "CBSE suggests about 50 hours of computational thinking a year in Classes 3-5. The coding here needs no computer: "
+                                "children act out, write and check programs on paper, which builds the same ideas used later in block coding and AI. ") +
                                 "Answers are at the back. Encourage children to explain their thinking, not just the answer.")],
                              "#5B6577", "For teachers and parents")]
     # contents
-    toc = TableOfContents(); toc.levelStyles = [S["toc0"]]; toc.dotsMinLevel = 0
+    toc = TableOfContents(); toc.dotsMinLevel = 0
+    n_entries = len(CH) + len(PROJECTS) + 3  # chapters, projects, answers, words, cards
+    toc.levelStyles = [S["toc0"] if n_entries <= 18 else ParagraphStyle("toc0s", parent=S["toc0"], leading=14.5)]
     def cells(ch):
-        return [P(f"<font color='{ch['color']}'><b>{ch['n']}</b></font>", "q", fontSize=10), P(ch["skill"], "body", fontSize=9.5, leading=12, spaceAfter=0), P(ch["level"], "small", fontSize=8)]
+        return [P(f"<font color='{ch['color']}'><b>{ch_badge(ch)}</b></font>", "q", fontSize=10), P(ch["skill"], "body", fontSize=9.5, leading=12, spaceAfter=0), P(ch["level"], "small", fontSize=8)]
     hdr = [P("<b>Ch</b>", "small"), P("<b>Coder skill</b>", "small"), P("<b>Level</b>", "small")]
     skills = [hdr + hdr]
-    half_n = (len(CH) + 1) // 2  # two columns; works for any number of chapters
+    units = CH + PROJECTS
+    half_n = (len(units) + 1) // 2  # two columns; works for any number of chapters
     for i in range(half_n):
-        right = cells(CH[i + half_n]) if i + half_n < len(CH) else ["", "", ""]
-        skills.append(cells(CH[i]) + right)
+        right = cells(units[i + half_n]) if i + half_n < len(units) else ["", "", ""]
+        skills.append(cells(units[i]) + right)
     half = (CW - 12) / 2
     st = Table(skills, colWidths=[28, half - 70, 42, 28, half - 70, 42])
     st.setStyle(TableStyle([("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, C("#F3F6FB")]), ("LINEBELOW", (0, 0), (-1, 0), 1, C("#14A3A3")),
@@ -451,32 +552,35 @@ def back_matter():
     s += [TocMark("Answers", "answers"), P("Answers", "h", fontSize=24, leading=30), P("Many questions have more than one good answer. Accept any answer that follows the rule and can be explained.", "small"), Spacer(1, 6)]
     blocks = []
     for ch in CH:
-        items = [P(f"<font color='{ch['color']}'>{ch['n']}. {ch['title']}</font>", "ansh")]
+        items = [P(f"<font color='{ch['color']}'>{ch_label(ch)}</font>", "ansh")]
         for i, q in enumerate(ch["practice"], 1):
             items.append(P(f"<b>{i}.</b> {q['answer']}", "ans"))
         items.append(P(f"<b>Build it:</b> {ch['build']['answer']}", "ans"))
         items.append(P(f"<b>Challenge:</b> {ch['challenge']['answer']}", "ans"))
         blocks.append(items)
+    for p in PROJECTS:
+        if p.get("answer"):
+            blocks.append([P(f"<font color='{p['color']}'>{ch_label(p)}</font>", "ansh"), P(p["answer"], "ans")])
     for b in blocks:
         s += [KeepTogether(b)]
     s += [NextPageTemplate("body")]
     # glossary
     s += [NextPageTemplate("body"), PageBreak(), TocMark("Coder words", "words"), P("Coder words", "h", fontSize=24, leading=30), Spacer(1, 6)]
     seen, rows = set(), []
-    for ch in CH:
+    for ch in CH + PROJECTS:
         for w, m in ch["words"]:
             if w not in seen:
-                seen.add(w); rows.append((w, m, ch["n"]))
+                seen.add(w); rows.append((w, m, ch_short(ch)))
     rows.sort(key=lambda r: r[0].lower())
-    t = Table([[P(f"<b>{w}</b>", "q", fontSize=10.5, leading=13), P(m, "body", fontSize=10.5, leading=13, spaceAfter=0), P(f"Ch {n}", "small")] for w, m, n in rows], colWidths=[150, CW - 210, 60])
+    t = Table([[P(f"<b>{w}</b>", "q", fontSize=10.5, leading=13), P(m, "body", fontSize=10.5, leading=13, spaceAfter=0), P(n, "small")] for w, m, n in rows], colWidths=[150, CW - 210, 60])
     t.setStyle(TableStyle([("ROWBACKGROUNDS", (0, 0), (-1, -1), [colors.white, C("#F3F6FB")]), ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
                            ("TOPPADDING", (0, 0), (-1, -1), 2.5), ("BOTTOMPADDING", (0, 0), (-1, -1), 3), ("ROUNDEDCORNERS", [8, 8, 8, 8])]))
     s += [t]
     # cut-out cards
     s += [NextPageTemplate("body"), PageBreak(), TocMark("Cut-out code cards", "cards"), P("Cut-out code cards", "h", fontSize=24, leading=30),
           P("Ask an adult to help you cut along the dotted lines. Use the cards to build programs on your desk, then act them out with a friend.", "small"), Spacer(1, 8)]
-    cards = [("up", "up"), ("down", "down"), ("left", "left"), ("right", "right"), ("Start", "step"), ("Repeat ___ times", "loop"),
-             ("If ___", "if"), ("else", "if"), ("When ___ happens", "event"), ("add ___", "step"), ("take away ___", "step"), ("Stop", "step")]
+    cards = META.get("cutout_cards", [("up", "up"), ("down", "down"), ("left", "left"), ("right", "right"), ("Start", "step"), ("Repeat ___ times", "loop"),
+             ("If ___", "if"), ("else", "if"), ("When ___ happens", "event"), ("add ___", "step"), ("take away ___", "step"), ("Stop", "step")])
     cells = []
     for lab, kind in cards:
         k = kind if kind in ("up", "down", "left", "right") else "step"
@@ -508,6 +612,8 @@ def build():
     story += front_matter()
     for ch in CH:
         story += chapter_story(ch)
+    for p in PROJECTS:
+        story += project_story(p)
     story += back_matter()
     doc = Doc(OUT)
     doc.multiBuild(story)
