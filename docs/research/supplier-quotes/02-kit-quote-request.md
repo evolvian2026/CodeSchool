@@ -44,9 +44,9 @@ Please quote per kit at **50 / 200 / 1,000 / 3,000 kits**, and the add-on projec
 
 | Step | Target date |
 |---|---|
-| Your quotation | [date, about 10 days from sending] |
-| Prototype kit | [date, e.g. early January 2027] |
-| Main order delivery | [date, e.g. by 15 March 2027] |
+| Your quotation | Monday 23 November 2026 |
+| Prototype kit | Friday 8 January 2027 (order by 27 November 2026) |
+| Main order delivery | By Monday 15 March 2027 (order placed by 15 February) |
 
 Artwork will be supplied as print-ready PDFs with die lines. This request is for budgeting and supplier selection and is not yet an order.
 

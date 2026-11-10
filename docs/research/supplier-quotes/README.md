@@ -18,7 +18,7 @@ Draft requests to replace the estimates in the [costs and competitor report](../
 
 ## Timing
 
-Most schools finalise next year's booklist in December-January. Specimen copies would be needed by about mid-December for an April 2027 start, so the printer and kit requests are urgent if that start date is chosen. The distributor enquiry is useful either way.
+The launch is set for **April 2027** (see the [launch plan](../../plan/April-2027-launch-plan.md)). Send all requests by **Friday 13 November 2026**, with quotes due **Monday 23 November**. Specimen booklets must be delivered by **15 December**, and the main print and kits by **15 March 2027**. These dates are already filled in the requests.
 
 ## Keep it private
 

@@ -14,7 +14,7 @@ def load(out):
     sys.argv = argv
     return ns
 
-def make_doc_class(ns, kit_name, cover_kicker, cover_title, cover_lines, cover_meta):
+def make_doc_class(ns, kit_name, cover_kicker, cover_title, cover_lines, cover_meta, footer_date="6 November 2026"):
     g = ns
     A4, LM, RM, TM, BM, CW, PAGE_W, PAGE_H = (g[k] for k in "A4 LM RM TM BM CW PAGE_W PAGE_H".split())
     colors, mm, stringWidth = g["colors"], g["mm"], g["stringWidth"]
@@ -29,7 +29,7 @@ def make_doc_class(ns, kit_name, cover_kicker, cover_title, cover_lines, cover_m
         canv.setFont("UI", 8); canv.drawRightString(PAGE_W - RM, PAGE_H - 6 * mm, doc.section)
         canv.setStrokeColor(RULE); canv.setLineWidth(0.5); canv.line(LM, 12 * mm, PAGE_W - RM, 12 * mm)
         canv.setFillColor(MUTED); canv.setFont("UI", 7.5)
-        canv.drawString(LM, 8 * mm, "6 November 2026  ·  github.com/evolvian2026/CodeSchool")
+        canv.drawString(LM, 8 * mm, f"{footer_date}  ·  github.com/evolvian2026/CodeSchool")
         canv.drawRightString(PAGE_W - RM, 8 * mm, f"Page {doc.page}")
         canv.setFillColor(PRIMARY); canv.setFont("UI-B", 7.5)
         label = "↑ Back to contents"; w = stringWidth(label, "UI-B", 7.5); x = PAGE_W / 2 - w / 2

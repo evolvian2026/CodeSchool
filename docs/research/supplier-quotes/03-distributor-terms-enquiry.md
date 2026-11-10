@@ -45,7 +45,7 @@ We expect to supply about [number] schools in [city/region] for the 2027-28 sess
 12. Invoicing and GST documents you need from us (books are nil-rated; the kit may be invoiced separately at 5%).
 13. Delivery terms: who pays freight to your godown and from there to schools or shops?
 
-Thank you. A short call this week would be very helpful: [Phone] / [Email].
+We plan to appoint booksellers by **31 December 2026** and confirm school orders by 1 February 2027. A short call before 11 December would be very helpful: [Phone] / [Email].
 
 Regards,
 Anoop Dobhal

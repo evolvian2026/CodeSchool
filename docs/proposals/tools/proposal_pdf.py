@@ -38,7 +38,8 @@ body = expand(body, pathlib.Path(MD).resolve().parent)
 split = lambda v: [x.strip() for x in v.split("|")] if v else []
 
 KitDoc = make_doc_class(globals(), fm.get("header", "Proposal"), fm.get("kicker", "CODESCHOOL"),
-                        fm.get("title", "Proposal"), split(fm.get("lines")), split(fm.get("meta")))
+                        fm.get("title", "Proposal"), split(fm.get("lines")), split(fm.get("meta")),
+                        fm.get("date", "6 November 2026"))
 
 
 def inline(s):

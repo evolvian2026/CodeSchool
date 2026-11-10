@@ -33,7 +33,7 @@ Some inner pages of item A have **cut-out shapes** (cards students cut along dot
 
 1. Items A and B with **2-colour** inner pages instead of 4-colour.
 2. Item A at **64 pages** instead of 80.
-3. A **short digital run of 50 copies per title** of items A and B for specimen copies (needed by [mid-December / date]).
+3. A **short digital run of specimen booklets**: two booklets (one for Classes 3-5, one for Classes 6-8), 32 pages each, A4, 4-colour, centre-stitched, 50 copies of each, delivered by **15 December 2026**.
 
 ### 4. Please include in your quotation
 
@@ -52,10 +52,10 @@ Some inner pages of item A have **cut-out shapes** (cards students cut along dot
 
 | Step | Target date |
 |---|---|
-| Your quotation | [date, about 10 days from sending] |
-| Print-ready files for specimen run | [date] |
-| Print-ready files for main run | [date, e.g. February 2027] |
-| Delivery of main run | [date, e.g. by 15 March 2027] |
+| Your quotation | Monday 23 November 2026 |
+| Print-ready files for specimen booklets | Monday 7 December 2026 (delivery by 15 December) |
+| Print-ready files for main run | Wednesday 10 February 2027 (order placed by 15 February) |
+| Delivery of main run | By Monday 15 March 2027 |
 
 Files will be supplied as print-ready PDF/X with 3 mm bleed. Final quantities will be confirmed when school orders are known; this request is for budgeting and supplier selection and is not yet an order.
 

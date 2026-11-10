@@ -40,6 +40,10 @@ Foundational curriculum and market research (no code yet):
 - [Interview materials](docs/research/interview-materials/): intro letter, Level B3 paper prototype, device audit sheet and tracking sheet.
 - [Supplier quote requests](docs/research/supplier-quotes/): draft requests to printers, kit makers, distributors and booksellers, plus a comparison sheet, to replace the cost estimates with real quotes.
 
+## Launch plan
+
+- **[April 2027 launch plan (PDF)](docs/plan/CodeSchool-April-2027-Launch-Plan.pdf)** ([markdown](docs/plan/April-2027-launch-plan.md)): a dated plan worked back from the first day of the 2027-28 session. It covers three decisions needed by 20 November 2026 (launch scope, specimen format, online timing), specimens by 15 December, booklist adoption, the pilot, orders, print and kits by 15 March, and teacher orientation, with owners, budget and risks.
+
 ## School proposals (drafts)
 
 - [Offline Programme proposal (PDF)](docs/proposals/CodeSchool-Proposal-Offline.pdf): printed workbooks, unplugged kits and teacher scripts; no student devices.
