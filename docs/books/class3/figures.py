@@ -145,12 +145,13 @@ def cipher_wheel(size=110):
     d = Drawing(size, size)
     cx = cy = size / 2
     d.add(Circle(cx, cy, size / 2 - 2, fillColor=C("#FFF4D6"), strokeColor=INK, strokeWidth=1.4))
-    d.add(Circle(cx, cy, size / 2 - 22, fillColor=C("#DDF4E8"), strokeColor=INK, strokeWidth=1.2))
+    d.add(Circle(cx, cy, size / 2 - 20, fillColor=C("#DDF4E8"), strokeColor=INK, strokeWidth=1.2))
+    d.add(Circle(cx, cy, size / 2 - 40, fillColor=C("#FFFFFF"), strokeColor=INK, strokeWidth=0.8))
     for i in range(26):
         a = math.pi / 2 - i * 2 * math.pi / 26
-        d.add(_t(cx + (size / 2 - 12) * math.cos(a), cy + (size / 2 - 12) * math.sin(a) - 3, chr(65 + i), 6.5, "KidB"))
-        b = a - 3 * 2 * math.pi / 26
-        d.add(_t(cx + (size / 2 - 32) * math.cos(a), cy + (size / 2 - 32) * math.sin(a) - 3, chr(65 + (i + 3) % 26), 6, "Kid", GREEN))
+        d.add(_t(cx + (size / 2 - 10) * math.cos(a), cy + (size / 2 - 10) * math.sin(a) - 3, chr(65 + i), 7.5, "KidB"))
+        d.add(_t(cx + (size / 2 - 30) * math.cos(a), cy + (size / 2 - 30) * math.sin(a) - 3, chr(65 + (i + 3) % 26), 7, "KidB", GREEN))
+    d.add(_t(cx, cy - 14, "key +3", 7, "KidB", SOFT))
     d.add(Circle(cx, cy, 4, fillColor=INK))
     return d
 

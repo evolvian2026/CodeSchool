@@ -49,6 +49,7 @@ Foundational curriculum and market research (no code yet):
 ## Sample book
 
 - **[Think Like a Coder, Class 3 (PDF)](docs/books/CodeSchool-Class3-Think-Like-a-Coder.pdf)**: a 49-page illustrated sample workbook that follows the 14 chapters of NCERT *Maths Mela* Class 3 (the same order as CBSE's 2026-27 CT&AI Class 3 handbook). Each chapter has theory (Learn), a worked example, five practice questions, a coding-on-paper task, a challenge and a self-check, plus answers, a glossary and cut-out code cards. All questions are original. Build it with `python -P -E docs/books/class3/build_book.py`.
+- **[Specimen booklet, Classes 3-5 (PDF)](docs/books/CodeSchool-Classes3-5-Specimen-Booklet.pdf)**: the 24-page booklet for school visits: the programme and what schools receive, three full chapters (1, 11, 14), a sample teacher script, the classroom kit, assessment and report card, answers, cut-out cards, a note for parents and next steps. Build it with `python -P -E docs/books/class3/build_specimen.py`.
 
 ## School proposals (drafts)
 

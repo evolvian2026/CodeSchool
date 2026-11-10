@@ -33,7 +33,7 @@ Some inner pages of item A have **cut-out shapes** (cards students cut along dot
 
 1. Items A and B with **2-colour** inner pages instead of 4-colour.
 2. Item A at **64 pages** instead of 80.
-3. A **short digital run of specimen booklets**: two booklets (one for Classes 3-5, one for Classes 6-8), 32 pages each, A4, 4-colour, centre-stitched, 50 copies of each, delivered by **15 December 2026**.
+3. A **short digital run of specimen booklets**: two booklets: Classes 3-5 (24 pages) and Classes 6-8 (up to 32 pages), A4, 4-colour, centre-stitched, 50 copies of each, delivered by **15 December 2026**.
 
 ### 4. Please include in your quotation
 
