@@ -387,3 +387,39 @@ FACTS = {
     13: "Computers keep time with a tiny clock inside that ticks millions of times every second.",
     14: "Robots in big warehouses move around grids, following programs, to fetch parcels.",
 }
+
+# Class-specific text used by the shared builders (docs/books/tools).
+META = dict(
+    textbook_short="NCERT Maths Mela, Class 3",
+    textbook_long="the NCERT Class 3 maths book, <i>Maths Mela</i>",
+    cover_follows="Follows the 14 chapters of NCERT Maths Mela, Class 3",
+    levels_note="Levels: B1 sequences and loops, B2 events, patterns and data, B3 if-then decisions.",
+    sample=[1, 11, 14],  # chapters shown in full in the specimen booklet: steps (B1), if-then (B3), robot routes
+    teacher=dict(
+        title="Robot routes",
+        source="From the teacher book, Class 3, chapter 14 (<i>The Surajkund Fair</i>). One 40-minute period. Level B1-B2.",
+        need=[["Kit", "Floor grid mat (or a 4 x 5 grid drawn on the floor or board), arrow cards, two stall cards"],
+              ["Book", "Chapter 14 pages, 'Try it' questions 1-3"], ["Goal", "Children follow and write a program of arrows, and find a bug in a route"]],
+        steps=[["1. Predict and run (8 min)", "Put 'Robo' (a child) on A1 and a stall card on C3. Hold up: up, up, right, right.",
+                "Predict where Robo will stop. One child walks the program while the class reads the arrows aloud."],
+               ["2. Investigate (8 min)", "Ask: 'Would right, right, up, up reach the same stall? Does the order matter?'",
+                "Discuss in pairs. Try it on the mat. (Here both work; with a wall, order can matter.)"],
+               ["3. Modify (8 min)", "Put a 'wall' card on B3. Ask children to change one arrow so Robo avoids it.", "Change the program and test it on the mat."],
+               ["4. Put in order (8 min)", "Give each pair jumbled arrow cards for a new stall.", "Order the cards so Robo reaches the stall, then do 'Try it' question 1."],
+               ["5. Make (8 min)", "Ask pairs to plan a trip to two stalls.", "Write the route with arrow cards, swap with another pair and test their route."]],
+        setup_fig=lambda: F.grid(4, 5, robot=(0, 0), items={(2, 2): ("T", F.PURPLE)}, walls=[(2, 1)], cell=26),
+        setup_text="<b>Set-up:</b> Robo starts on A1, the toy stall (T) is on C3. In step 3, put the wall card on B3 (grey). "
+                   "Children then change one arrow so Robo still reaches the stall.",
+        mistakes=["<b>Counting the start square as a step.</b> Ask: 'Did Robo move yet?'",
+                  "<b>Mixing up left and right.</b> In this level, arrows are map directions (up means towards the top of the grid), not turns.",
+                  "<b>Skipping a square when walking the route.</b> Have the class count each move aloud."],
+        paces="<b>Support:</b> use a 3 x 3 grid and only up and right arrows.<br/><b>Stretch:</b> shorten a route with 'repeat' (for example, repeat 3 times: right). "
+              "Ask which route is shortest and how they know.",
+        check=["Two quick questions at the end of the period:",
+               "1. Robo is on A1. Write the arrows to reach C2.&nbsp;&nbsp; 2. With a wall on B2, the program <i>up, right, right</i> fails. Which arrow is the bug? (the 2nd)",
+               "Note in the observation journal: <b>Beginning</b> (needs help following arrows), <b>Developing</b> (follows, cannot yet write), "
+               "<b>Secure</b> (writes a working route), <b>Extending</b> (finds the shortest route or uses repeat)."],
+        link="Grids and robot routes connect to CBSE's Class 3 handbook chapter on <i>The Surajkund Fair</i> (paths, grids and pathway tiles), "
+             "and build the idea of a program as exact instructions: the base for block coding in later classes.",
+    ),
+)

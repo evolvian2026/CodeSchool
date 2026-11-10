@@ -1,21 +1,22 @@
-"""Build the 24-page school specimen booklet for the Classes 3-5 programme, from the Class 3 book.
+"""Build the 24-page school specimen booklet for a class, from that class's book.
 
-Usage: python -P -E docs/books/class3/build_specimen.py [out.pdf]
+Usage: python -P -E docs/books/tools/build_specimen.py <class number> [out.pdf]
 """
 import pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import build_book as B
 import figures as F
-from content import CH
+CH, META, CLASS = B.CH, B.META, B.CLASS
 from reportlab.lib import colors
 from reportlab.platypus import (BaseDocTemplate, PageTemplate, Frame, Spacer, Table, TableStyle, PageBreak, NextPageTemplate, KeepTogether)
 from reportlab.graphics.shapes import Drawing, Rect, Circle, Line, String, PolyLine
 from reportlab.pdfbase import pdfmetrics
 
 P, S, box, icon, C, tint, CW, LM, PW, PH = B.P, B.S, B.box, B.icon, B.C, B.tint, B.CW, B.LM, B.PW, B.PH
-OUT = sys.argv[1] if len(sys.argv) > 1 else str(pathlib.Path(__file__).resolve().parents[1] / "CodeSchool-Classes3-5-Specimen-Booklet.pdf")
+_args = [a for a in sys.argv[1:] if not a.isdigit()]
+OUT = _args[0] if _args else str(B.BOOKS / f"CodeSchool-Class{CLASS}-Specimen-Booklet.pdf")
 TEAL = "#14A3A3"
-SAMPLE = [1, 11, 14]  # chapters shown in full: steps (B1), if-then (B3), robot routes
+SAMPLE = META["sample"]  # chapters shown in full
 
 
 def table(rows, widths, head_color=TEAL, font=10.5, zebra=True, bold_first=True):
@@ -61,7 +62,7 @@ def about_pages():
                  ["Assessment and report card", "No format given", "Self-check, observation journal and term summary"],
                  ["Teacher training", "CBSE workshops", "School orientation, termly workshops and support"]],
                 [150, 150, CW - 300]), Spacer(1, 10)]
-    s += [box([checklist(["Follows the NCERT <i>Maths Mela</i> chapters in the same order, so it fits the maths period.",
+    s += [box([checklist([f"Follows the chapters of {META['textbook_long']} in the same order, so it fits the maths period.",
                           "Built around the CT skills in CBSE's curriculum: steps, patterns, abstraction, decomposition, logic and data.",
                           "Works in any classroom: paper, cards and a floor mat. A projector helps but is optional.",
                           "Ready for a maths or EVS teacher, not only a computer specialist."])],
@@ -75,9 +76,9 @@ def about_pages():
                 [100, CW - 170, 70]), Spacer(1, 10)]
     s += [heading("The series", 16)]
     s += [table([["Book", "Levels", "Coder skills"],
-                 ["Class 3 Practice Pack (this sample)", "B1-B3", "Steps and codes, views, loops, decomposition, patterns, events, data, logic, sorting, if-then, variables, grids"],
-                 ["Class 4 Practice Pack", "B3-B5", "If-else choices, nested loops, sorting machines, variables and inputs"],
-                 ["Class 5 Practice Pack", "B5-B7", "Variables, search strategies, debugging and a game designed on paper"],
+                 [f"Class 3 Practice Pack{' (this sample)' if CLASS == 3 else ''}", "B1-B3", "Steps and codes, views, loops, decomposition, patterns, events, data, logic, sorting, if-then, variables, grids"],
+                 [f"Class 4 Practice Pack{' (this sample)' if CLASS == 4 else ''}", "B3-B4", "If-else choices, parity checks, sorting networks, nested and repeat-until loops, decision trees, data"],
+                 [f"Class 5 Practice Pack{' (this sample)' if CLASS == 5 else ''}", "B5-B7", "Variables, search strategies, debugging and a game designed on paper"],
                  ["Classes 6-8 Projects and AI Pack", "C1-C8", "Functions, data, the AI chapters and two 20-hour projects a year (separate sample)"]],
                 [170, 50, CW - 220]), Spacer(1, 10)]
     s += [box([P("<b>Indicative price:</b> Rs 449 per child per year (MRP) for the Classes 3-5 Practice Pack, through the school's book list. "
@@ -142,8 +143,8 @@ def parents_page():
 
 
 def contents_page():
-    s = [NextPageTemplate("body"), PageBreak(), heading("Inside the full Class 3 book"),
-         P(f"The complete book has 14 chapters, one for each NCERT <i>Maths Mela</i> chapter, plus answers, a glossary and cut-out code cards. "
+    s = [NextPageTemplate("body"), PageBreak(), heading(f"Inside the full Class {CLASS} book"),
+         P(f"The complete book has {len(CH)} chapters, one for each chapter of {META['textbook_long']}, plus answers, a glossary and cut-out code cards. "
            f"This sample includes chapters {', '.join(str(n) for n in SAMPLE)} in full.", "body"), Spacer(1, 6)]
     rows = [["Ch", "Chapter", "Coder skill", "Level", "In this sample"]]
     for ch in CH:
@@ -153,42 +154,19 @@ def contents_page():
 
 
 def teacher_pages():
-    ch = next(c for c in CH if c["n"] == 14)
-    s = [NextPageTemplate("body"), PageBreak(), B.SetChapter(None), heading("Sample teacher script: Robot routes"),
-         P("From the teacher book, Class 3, chapter 14 (<i>The Surajkund Fair</i>). One 40-minute period. Level B1-B2.", "small"), Spacer(1, 6)]
-    s += [table([["You need", ""], ["Kit", "Floor grid mat (or a 4 x 5 grid drawn on the floor or board), arrow cards, two stall cards"],
-                 ["Book", "Chapter 14 pages, 'Try it' questions 1-3"], ["Goal", "Children follow and write a program of arrows, and find a bug in a route"]],
-                [70, CW - 70], head_color="#E5484D", zebra=False), Spacer(1, 8)]
-    s += [table([["Step and time", "Teacher does", "Children do"],
-                 ["1. Predict and run (8 min)", "Put 'Robo' (a child) on A1 and a stall card on C3. Hold up: up, up, right, right.",
-                  "Predict where Robo will stop. One child walks the program while the class reads the arrows aloud."],
-                 ["2. Investigate (8 min)", "Ask: 'Would right, right, up, up reach the same stall? Does the order matter?'",
-                  "Discuss in pairs. Try it on the mat. (Here both work; with a wall, order can matter.)"],
-                 ["3. Modify (8 min)", "Put a 'wall' card on B3. Ask children to change one arrow so Robo avoids it.",
-                  "Change the program and test it on the mat."],
-                 ["4. Put in order (8 min)", "Give each pair jumbled arrow cards for a new stall.",
-                  "Order the cards so Robo reaches the stall, then do 'Try it' question 1."],
-                 ["5. Make (8 min)", "Ask pairs to plan a trip to two stalls.",
-                  "Write the route with arrow cards, swap with another pair and test their route."]],
+    T = META["teacher"]
+    s = [NextPageTemplate("body"), PageBreak(), B.SetChapter(None), heading("Sample teacher script: " + T["title"]),
+         P(T["source"], "small"), Spacer(1, 6)]
+    s += [table([["You need", ""]] + T["need"], [70, CW - 70], head_color="#E5484D", zebra=False), Spacer(1, 8)]
+    s += [table([["Step and time", "Teacher does", "Children do"]] + T["steps"],
                 [110, (CW - 110) / 2, (CW - 110) / 2], head_color="#E5484D", font=9.5), Spacer(1, 8)]
-    setup = Table([[F.grid(4, 5, robot=(0, 0), items={(2, 2): ("T", F.PURPLE)}, walls=[(2, 1)], cell=26),
-                    P("<b>Set-up:</b> Robo starts on A1, the toy stall (T) is on C3. In step 3, put the wall card on B3 (grey). "
-                      "Children then change one arrow so Robo still reaches the stall.", "body")]], colWidths=[170, CW - 190])
+    setup = Table([[T["setup_fig"](), P(T["setup_text"], "body")]], colWidths=[T.get("setup_w", 170), CW - T.get("setup_w", 170) - 20])
     setup.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 0)]))
     s += [box([setup], "#3B82F6", "Lesson set-up"), Spacer(1, 8),
-          box([checklist(["<b>Counting the start square as a step.</b> Ask: 'Did Robo move yet?'",
-                          "<b>Mixing up left and right.</b> In this level, arrows are map directions (up means towards the top of the grid), not turns.",
-                          "<b>Skipping a square when walking the route.</b> Have the class count each move aloud."], "#E5484D")],
-              "#E5484D", "Common mistakes to watch for"), Spacer(1, 8),
-          box([P("<b>Support:</b> use a 3 x 3 grid and only up and right arrows.<br/><b>Stretch:</b> shorten a route with 'repeat' (for example, repeat 3 times: right). "
-                 "Ask which route is shortest and how they know.", "body")], "#8B5CF6", "Different paces"), Spacer(1, 8),
-          box([P("Two quick questions at the end of the period:", "body"),
-               P("1. Robo is on A1. Write the arrows to reach C2.&nbsp;&nbsp; 2. With a wall on B2, the program <i>up, right, right</i> fails. Which arrow is the bug? (the 2nd)", "body"),
-               P("Note in the observation journal: <b>Beginning</b> (needs help following arrows), <b>Developing</b> (follows, cannot yet write), "
-                 "<b>Secure</b> (writes a working route), <b>Extending</b> (finds the shortest route or uses repeat).", "body")],
-              "#14A3A3", "Check for understanding"), Spacer(1, 8),
-          box([P("Grids and robot routes connect to CBSE's Class 3 handbook chapter on <i>The Surajkund Fair</i> (paths, grids and pathway tiles), "
-                 "and build the idea of a program as exact instructions: the base for block coding in later classes.", "body")], "#5B6577", "Curriculum link"),
+          KeepTogether([box([checklist(T["mistakes"], "#E5484D")], "#E5484D", "Common mistakes to watch for")]), Spacer(1, 8),
+          KeepTogether([box([P(T["paces"], "body")], "#8B5CF6", "Different paces")]), Spacer(1, 8),
+          KeepTogether([box([P(x, "body") for x in T["check"]], "#14A3A3", "Check for understanding")]), Spacer(1, 8),
+          KeepTogether([box([P(T["link"], "body")], "#5B6577", "Curriculum link")]),
           B.IfFits(Table([[Spacer(1, 14)], [heading("Teacher notes", 15)], [B.lines(9, CW)]], colWidths=[CW],
                          style=[("LEFTPADDING", (0, 0), (-1, -1), 0), ("RIGHTPADDING", (0, 0), (-1, -1), 0)]))]
     return s
@@ -292,7 +270,7 @@ def on_spec_cover(c, doc):
     c.setFillColor(colors.white); c.setFont("KidB", 12.5)
     c.drawString(LM + 10, 205, "For CBSE's Computational Thinking and AI curriculum, 2026-27")
     c.setFont("Kid", 11)
-    c.drawString(LM + 10, 186, "Follows the NCERT Maths Mela chapters  ·  No computers needed")
+    c.drawString(LM + 10, 186, f"Class {CLASS} sample  ·  Follows the NCERT maths chapters  ·  No computers needed")
     c.drawString(LM + 10, 168, "Practice Pack Rs 449 per child (indicative)  ·  Free pilot, January-March 2027")
     c.setFont("Kid", 8.5)
     c.drawString(LM + 10, 52, "© 2026 Bullseye Knowledge System Limited. All rights reserved. Not for sale.")
@@ -320,7 +298,7 @@ def on_back_cover(c, doc):
 class SpecDoc(BaseDocTemplate):
     def __init__(self, fn):
         super().__init__(fn, pagesize=B.A4, leftMargin=B.LM, rightMargin=B.RM, topMargin=B.TM, bottomMargin=B.BM,
-                         title="Think Like a Coder - Classes 3-5 specimen booklet", author="CodeSchool, Bullseye Knowledge System Limited",
+                         title=f"Think Like a Coder - Class {CLASS} specimen booklet", author="CodeSchool, Bullseye Knowledge System Limited",
                          subject="Specimen booklet for schools")
         fr = Frame(B.LM, B.BM, CW, PH - B.TM - B.BM, id="f", leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
         gap = 18
@@ -329,7 +307,7 @@ class SpecDoc(BaseDocTemplate):
         self.addPageTemplates([PageTemplate("cover", [fr], onPage=on_spec_cover), PageTemplate("body", [fr], onPageEnd=B.on_body),
                                PageTemplate("twocol", [left, right], onPageEnd=B.on_body), PageTemplate("back", [fr], onPage=on_back_cover)])
         self.chapter = None
-        self.default_header = "Specimen booklet  ·  Classes 3-5"
+        self.default_header = f"Specimen booklet  ·  Class {CLASS}"
         self.footer_note = "Specimen copy · not for sale"
 
 

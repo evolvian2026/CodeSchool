@@ -1,6 +1,7 @@
-"""Build 'Think Like a Coder - Class 3' (CodeSchool sample workbook) as a PDF.
+"""Build a 'Think Like a Coder' class workbook (CodeSchool sample edition) as a PDF.
 
-Usage: python -P -E docs/books/class3/build_book.py [out.pdf]
+Usage: python -P -E docs/books/tools/build_book.py <class number> [out.pdf]
+Content comes from docs/books/class<N>/content.py (CH, FACTS, META).
 """
 import pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
@@ -18,7 +19,13 @@ from reportlab.platypus.tableofcontents import TableOfContents
 from reportlab.graphics.shapes import Drawing, Rect, Circle, Line, String, Polygon, PolyLine
 
 import figures as F
-from content import CH, FACTS
+import importlib.util
+
+BOOKS = pathlib.Path(__file__).resolve().parents[1]
+CLASS = int(sys.argv[1]) if len(sys.argv) > 1 and sys.argv[1].isdigit() else 3
+_spec = importlib.util.spec_from_file_location(f"content_class{CLASS}", BOOKS / f"class{CLASS}" / "content.py")
+_content = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(_content)
+CH, FACTS, META = _content.CH, _content.FACTS, _content.META
 
 FONTS = pathlib.Path("C:/Windows/Fonts")
 for name, fn in [("Kid", "segoeui.ttf"), ("KidB", "segoeuib.ttf"), ("KidBl", "seguibl.ttf"), ("KidI", "segoeuii.ttf"),
@@ -26,7 +33,8 @@ for name, fn in [("Kid", "segoeui.ttf"), ("KidB", "segoeuib.ttf"), ("KidBl", "se
     pdfmetrics.registerFont(TTFont(name, str(FONTS / fn)))
 pdfmetrics.registerFontFamily("Kid", normal="Kid", bold="KidB", italic="KidI", boldItalic="KidB")
 
-OUT = sys.argv[1] if len(sys.argv) > 1 else str(pathlib.Path(__file__).resolve().parents[1] / "CodeSchool-Class3-Think-Like-a-Coder.pdf")
+_args = [a for a in sys.argv[1:] if not a.isdigit()]
+OUT = _args[0] if _args and __name__ == "__main__" else str(BOOKS / f"CodeSchool-Class{CLASS}-Think-Like-a-Coder.pdf")
 PW, PH = A4
 LM = RM = 40
 TM, BM = 62, 52
@@ -222,10 +230,12 @@ class Banner(Flowable):
         c.setFillColor(colors.white); c.circle(52, 56, 34, stroke=0, fill=1)
         c.setFillColor(col); c.setFont("KidBl", 30); c.drawCentredString(52, 45, str(ch["n"]))
         c.setFillColor(colors.white); c.setFont("KidB", 10); c.drawString(100, 86, f"CHAPTER {ch['n']}  ·  LEVEL {ch['level']}")
-        title = ch["title"]; size = 26 if pdfmetrics.stringWidth(title, "KidBl", 26) < CW - 220 else 21
+        title = ch["title"]; size = 26
+        while pdfmetrics.stringWidth(title, "KidBl", size) > CW - 215 and size > 14:  # shrink long titles to clear Robo
+            size -= 1
         c.setFont("KidBl", size); c.drawString(100, 54, title)
         c.setFont("KidB", 11.5); c.drawString(100, 30, "Coder skill: " + ch["skill"])
-        c.setFont("Kid", 9); c.drawString(100, 13, f"Goes with NCERT Maths Mela, Class 3, chapter {ch['n']}")
+        c.setFont("Kid", 9); c.drawString(100, 13, f"Goes with {META['textbook_short']}, chapter {ch['n']}")
         c.restoreState()
         r = F.robo(70, color=C("#FFFFFF") if False else F.YELLOW, wave=True)
         r.drawOn(c, CW - 86, 18)
@@ -342,7 +352,7 @@ def on_body(c, doc):
     c.setFillColor(tint(ch["color"] if ch else "#14A3A3", 0.82)); c.roundRect(LM - 10, PH - 44, CW + 20, 26, 13, stroke=0, fill=1)
     c.setFillColor(col); c.setFont("KidB", 9.5)
     c.drawString(LM, PH - 34, f"Chapter {ch['n']}  ·  {ch['title']}" if ch else getattr(doc, "default_header", "Think Like a Coder"))
-    c.setFont("Kid", 9); c.drawRightString(PW - RM, PH - 34, "Think Like a Coder  ·  Class 3")
+    c.setFont("Kid", 9); c.drawRightString(PW - RM, PH - 34, f"Think Like a Coder  ·  Class {CLASS}")
     c.setFillColor(col); c.circle(PW / 2, 26, 12, stroke=0, fill=1)
     c.setFillColor(colors.white); c.setFont("KidBl", 10); c.drawCentredString(PW / 2, 22.5, str(doc.page))
     c.setFillColor(SOFT); c.setFont("Kid", 7)
@@ -359,10 +369,10 @@ def on_cover(c, doc):
     for x, y, r, colr in ((470, 700, 30, "#FFD23F"), (530, 800, 22, "#EC4899"), (548, 590, 46, "#F5A524"), (70, 470, 26, "#8B5CF6"),
                           (540, 360, 30, "#2BB673"), (110, 380, 14, "#FFD23F"), (330, 815, 12, "#ffffff")):
         c.setFillColor(C(colr)); c.circle(x, y, r, stroke=0, fill=1)
-    c.setFillColor(C("#FFFFFF")); c.setFont("KidB", 13); c.drawString(LM + 10, PH - 70, "CodeSchool  ·  Class 3")
+    c.setFillColor(C("#FFFFFF")); c.setFont("KidB", 13); c.drawString(LM + 10, PH - 70, f"CodeSchool  ·  Class {CLASS}")
     c.setFont("KidBl", 54); c.drawString(LM + 10, PH - 150, "Think Like")
     c.drawString(LM + 10, PH - 208, "a Coder")
-    c.setFillColor(C("#FFD23F")); c.setFont("Fun", 22); c.drawString(LM + 14, PH - 246, "Computational thinking for Class 3")
+    c.setFillColor(C("#FFD23F")); c.setFont("Fun", 22); c.drawString(LM + 14, PH - 246, f"Computational thinking for Class {CLASS}")
     c.setFillColor(colors.white); c.setFont("Kid", 13)
     c.drawString(LM + 14, PH - 274, "Learn it  ·  See it  ·  Try it  ·  Build it")
     r = F.robo(230, color=F.YELLOW, wave=True)
@@ -373,7 +383,7 @@ def on_cover(c, doc):
         w = pdfmetrics.stringWidth(lab, "KidB", 10) + (42 if k != "step" else 26)
         d = F.code_card(lab, k, w=w, h=30, color=colr); d.drawOn(c, x, 300); x += w + 8
     c.setFillColor(colors.white); c.setFont("KidB", 12)
-    c.drawString(LM + 10, 190, "Follows the 14 chapters of NCERT Maths Mela, Class 3")
+    c.drawString(LM + 10, 190, META["cover_follows"])
     c.setFont("Kid", 11)
     c.drawString(LM + 10, 170, "Built for CBSE's Computational Thinking and AI curriculum, 2026-27")
     c.drawString(LM + 10, 152, "Theory, worked examples, practice, coding on paper and challenges")
@@ -408,7 +418,7 @@ def front_matter():
           P("Coders use cards like these. Each colour means something different. You will find cut-out cards at the back of the book.")]
     s += code_cards([("Step: do this", "step", "#3B82F6"), ("Repeat: a loop", "loop", "#F5A524"), ("If: a decision", "if", "#8B5CF6"),
                      ("When: an event", "event", "#E5484D"), ("move", "right", "#3B82F6")])
-    s += [Spacer(1, 12), box([P("Each chapter goes with the same chapter of the NCERT Class 3 maths book, <i>Maths Mela</i>, so it can be used in maths periods. "
+    s += [Spacer(1, 12), box([P(f"Each chapter goes with the same chapter of {META['textbook_long']}, so it can be used in maths periods. "
                                 "CBSE suggests about 50 hours of computational thinking a year in Classes 3-5. The coding here needs no computer: "
                                 "children act out, write and check programs on paper, which builds the same ideas used later in block coding and AI. "
                                 "Answers are at the back. Encourage children to explain their thinking, not just the answer.")],
@@ -427,7 +437,7 @@ def front_matter():
                             ("TOPPADDING", (0, 0), (-1, -1), 2), ("BOTTOMPADDING", (0, 0), (-1, -1), 3), ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
                             ("LEFTPADDING", (0, 0), (-1, -1), 4), ("RIGHTPADDING", (0, 0), (-1, -1), 3)]))
     s += [NextPageTemplate("body"), PageBreak(), P("What's inside", "h", fontSize=24, leading=30), Spacer(1, 4), toc, Spacer(1, 10),
-          P("Coder skills in this book", "h"), P("Levels: B1 sequences and loops, B2 events, patterns and data, B3 if-then decisions.", "small"), Spacer(1, 4), st]
+          P("Coder skills in this book", "h"), P(META["levels_note"], "small"), Spacer(1, 4), st]
     return s
 
 
@@ -477,8 +487,8 @@ def back_matter():
 class Doc(BaseDocTemplate):
     def __init__(self, fn):
         super().__init__(fn, pagesize=A4, leftMargin=LM, rightMargin=RM, topMargin=TM, bottomMargin=BM,
-                         title="Think Like a Coder - Class 3 (CodeSchool sample edition)", author="CodeSchool, Bullseye Knowledge System Limited",
-                         subject="Computational thinking workbook for Class 3")
+                         title=f"Think Like a Coder - Class {CLASS} (CodeSchool sample edition)", author="CodeSchool, Bullseye Knowledge System Limited",
+                         subject=f"Computational thinking workbook for Class {CLASS}")
         fr = Frame(LM, BM, CW, PH - TM - BM, id="f", leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
         gap = 18
         left = Frame(LM, BM, (CW - gap) / 2, PH - TM - BM, id="l", leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)

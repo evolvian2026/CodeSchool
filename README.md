@@ -46,10 +46,21 @@ Foundational curriculum and market research (no code yet):
 
 - **[April 2027 launch plan (PDF)](docs/plan/CodeSchool-April-2027-Launch-Plan.pdf)** ([markdown](docs/plan/April-2027-launch-plan.md)): a dated plan worked back from the first day of the 2027-28 session. Launch scope: the full range for all six classes (decided 10 November 2026), with a content production plan and a 15 January checkpoint. It also covers the specimen format and online timing decisions due by 20 November, specimens by 15 December, booklist adoption, the pilot, orders, print and kits by 15 March, and teacher orientation, with owners, budget and risks.
 
-## Sample book
+## Sample books
 
-- **[Think Like a Coder, Class 3 (PDF)](docs/books/CodeSchool-Class3-Think-Like-a-Coder.pdf)**: a 49-page illustrated sample workbook that follows the 14 chapters of NCERT *Maths Mela* Class 3 (the same order as CBSE's 2026-27 CT&AI Class 3 handbook). Each chapter has theory (Learn), a worked example, five practice questions, a coding-on-paper task, a challenge and a self-check, plus answers, a glossary and cut-out code cards. All questions are original. Build it with `python -P -E docs/books/class3/build_book.py`.
-- **[Specimen booklet, Classes 3-5 (PDF)](docs/books/CodeSchool-Classes3-5-Specimen-Booklet.pdf)**: the 24-page booklet for school visits: the programme and what schools receive, three full chapters (1, 11, 14), a sample teacher script, the classroom kit, assessment and report card, answers, cut-out cards, a note for parents and next steps. Build it with `python -P -E docs/books/class3/build_specimen.py`.
+Illustrated workbooks that follow the NCERT maths chapters in the same order as CBSE's 2026-27 CT&AI handbooks. Each chapter has theory (Learn), a worked example, five practice questions, a coding-on-paper task, a challenge, a self-check and a coder fact, plus answers, a glossary and cut-out code cards. All questions are original. Each class also has a 24-page specimen booklet for school visits (programme overview, three full chapters, a sample teacher script, the classroom kit, assessment, a note for parents and next steps).
+
+| Class | Full book | Specimen booklet | Content |
+|---|---|---|---|
+| 3 | [Think Like a Coder, Class 3 (PDF, 49 pp)](docs/books/CodeSchool-Class3-Think-Like-a-Coder.pdf) | [Class 3 specimen (PDF, 24 pp)](docs/books/CodeSchool-Class3-Specimen-Booklet.pdf) | [class3/content.py](docs/books/class3/content.py) |
+| 4 | [Think Like a Coder, Class 4 (PDF, 50 pp)](docs/books/CodeSchool-Class4-Think-Like-a-Coder.pdf) | [Class 4 specimen (PDF, 24 pp)](docs/books/CodeSchool-Class4-Specimen-Booklet.pdf) | [class4/content.py](docs/books/class4/content.py) |
+
+Build them with the shared tools (the number is the class):
+
+```bash
+python -P -E docs/books/tools/build_book.py 4
+python -P -E docs/books/tools/build_specimen.py 4
+```
 
 ## School proposals (drafts)
 
