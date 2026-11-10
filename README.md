@@ -42,7 +42,7 @@ Foundational curriculum and market research (no code yet):
 
 ## Launch plan
 
-- **[April 2027 launch plan (PDF)](docs/plan/CodeSchool-April-2027-Launch-Plan.pdf)** ([markdown](docs/plan/April-2027-launch-plan.md)): a dated plan worked back from the first day of the 2027-28 session. It covers three decisions needed by 20 November 2026 (launch scope, specimen format, online timing), specimens by 15 December, booklist adoption, the pilot, orders, print and kits by 15 March, and teacher orientation, with owners, budget and risks.
+- **[April 2027 launch plan (PDF)](docs/plan/CodeSchool-April-2027-Launch-Plan.pdf)** ([markdown](docs/plan/April-2027-launch-plan.md)): a dated plan worked back from the first day of the 2027-28 session. Launch scope: the full range for all six classes (decided 10 November 2026), with a content production plan and a 15 January checkpoint. It also covers the specimen format and online timing decisions due by 20 November, specimens by 15 December, booklist adoption, the pilot, orders, print and kits by 15 March, and teacher orientation, with owners, budget and risks.
 
 ## School proposals (drafts)
 
