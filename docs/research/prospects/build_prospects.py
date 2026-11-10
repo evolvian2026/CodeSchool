@@ -178,7 +178,7 @@ def main():
                        source_file=f.name, captured=TODAY)
             schools[aff] = rec; n += 1
         print(f"{f.name}: {n} schools")
-    fields = ["affiliation_no", "school_name", "address", "district", "state", "pin", "status", "level", "management",
+    fields = ["affiliation_no", "school_code", "school_name", "address", "district", "state", "pin", "status", "level", "management",
               "private", "launch_area", "website", "email", "phone", "contact_source", "source_file", "captured"]
     data = sorted(schools.values(), key=lambda r: (r["launch_area"] == "", r["state"], r["district"], r["school_name"]))
     with OUT.open("w", newline="", encoding="utf-8-sig") as fh:

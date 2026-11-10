@@ -44,7 +44,7 @@ python -P -E docs/research/prospects/enrich_contacts.py            # all launch 
 python -P -E docs/research/prospects/enrich_contacts.py --limit 20 # quick test
 ```
 
-The script visits each school's own website (home page, then up to three linked disclosure or contact pages, including one disclosure PDF), respects `robots.txt`, pauses between pages on the same site, and caches results in `contacts-cache.private.csv` so a run can be resumed. It writes `launch-schools-contacts.private.csv`. Contacts are only what schools publish themselves; many are Gmail or mobile numbers the school lists as its office contact, so treat them as office contacts and re-check before use.
+The script visits each school's own website (home page, then up to three linked disclosure or contact pages, including one disclosure PDF), respects `robots.txt`, pauses between pages on the same site, and caches results in `contacts-cache.private.csv` so a run can be resumed. It writes `launch-schools-contacts.private.csv`. It also adds a `cbse_mailbox` column: CBSE gives each affiliated school a mailbox named after its SARAS school code (`<school code>@cbseshiksha.in`); every one of the 24 such addresses found on school websites matched the school's code. Website contacts are only what schools publish themselves; many are Gmail or mobile numbers the school lists as its office contact, so treat them as office contacts and re-check before use.
 
 ## Rules
 

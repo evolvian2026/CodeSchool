@@ -32,6 +32,7 @@ PHONE = re.compile(r"(?:\+?91[\s-]?|0)?(?:\d{2,4}[\s-]?\d{6,8}|[6-9]\d{4}[\s-]?\
 LINK_HINT = re.compile(r"disclosure|mandatory|appendix|contact|reach[- ]?us|cbse", re.I)
 BAD_EMAIL = re.compile(r"(example|domain|yourmail|email\.com|sentry|wixpress|godaddy|\.png|\.jpg|\.gif|\.webp|\.svg|@2x)", re.I)
 FIELDS = ["affiliation_no", "email", "phone", "contact_url", "contact_checked", "note"]
+DUMMY = {"1234567890", "0123456789", "9876543210", "9999999999", "1111111111"}
 
 
 def fetch(url, want_pdf=False):
@@ -91,8 +92,8 @@ def tellinks(raw):
 def clean_emails(found, site_host):
     out = []
     for e in found:
-        e = e.strip(".,;:").lower()
-        if BAD_EMAIL.search(e) or len(e) > 80 or e in out:
+        e = e.strip(".,;: ").lower()
+        if not EMAIL.fullmatch(e) or BAD_EMAIL.search(e) or len(e) > 80 or e in out:
             continue
         out.append(e)
     # Prefer addresses on the school's own domain, then others the school publishes.
@@ -107,7 +108,7 @@ def clean_phones(found):
         d = re.sub(r"\D", "", p)
         if d.startswith("91") and len(d) == 12: d = d[2:]
         if d.startswith("0"): d = d[1:]
-        if len(d) != 10 or len(set(d)) < 4:
+        if len(d) != 10 or len(set(d)) < 4 or d in DUMMY or d in "01234567890123" or d in "98765432109876":
             continue
         if d not in out: out.append(d)
     return out[:3]
@@ -128,9 +129,17 @@ def check(row):
     res = {"affiliation_no": row["affiliation_no"], "email": "", "phone": "", "contact_url": "", "contact_checked": TODAY, "note": ""}
     if not site:
         res["note"] = "no website"; return res
-    if not allowed(site):
-        res["note"] = "robots.txt disallows"; return res
-    final, ctype, data = fetch(site)
+    # Try the address as listed, then https, then with or without "www." (many listings are inexact).
+    p = urllib.parse.urlparse(site)
+    host0 = p.netloc.removeprefix("www.")
+    variants = [site, f"https://{p.netloc}{p.path}", f"https://www.{host0}", f"http://www.{host0}", f"https://{host0}"]
+    final = None
+    for v in dict.fromkeys(variants):
+        if not allowed(v):
+            res["note"] = "robots.txt disallows"; return res
+        final, ctype, data = fetch(v)
+        if final:
+            break
     if not final:
         res["note"] = "site unreachable"; return res
     raw = data.decode("utf-8", "replace")
@@ -205,13 +214,20 @@ def main():
     out_fields = list(rows[0].keys())
     for k in ("email", "phone"):
         if k not in out_fields: out_fields.append(k)
-    out_fields += ["contact_url", "contact_checked", "contact_note"]
+    out_fields += ["cbse_mailbox", "contact_url", "contact_checked", "contact_note"]
+    import glob  # CBSE gives every school a mailbox named after its SARAS school code: <code>@cbseshiksha.in
+    codes = {}
+    for f in glob.glob(str(HERE / "saras-*.private.csv")):
+        for s in csv.DictReader(open(f, encoding="utf-8-sig")):
+            codes[re.sub(r"\D", "", s.get("Affiliation No", ""))] = re.sub(r"\D", "", s.get("School Code", ""))
     merged = []
     for r in target:
         c = cache.get(r["affiliation_no"], {})
         r = dict(r)
         r["email"] = r.get("email") or c.get("email", "")
-        r["phone"] = r.get("phone") or c.get("phone", "")
+        r["phone"] = r.get("phone") or "; ".join(clean_phones(c.get("phone", "").split(";")))  # re-filter cached numbers
+        sc = codes.get(r["affiliation_no"], "")
+        r["cbse_mailbox"] = f"{sc}@cbseshiksha.in" if sc else ""
         r["contact_url"] = c.get("contact_url", "")
         r["contact_checked"] = c.get("contact_checked", "")
         r["contact_note"] = c.get("note", "")
