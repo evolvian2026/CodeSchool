@@ -39,6 +39,7 @@ Foundational curriculum and market research (no code yet):
 - [Research notes](docs/research/research_notes/Kids%20coding%20curriculum%20and%20market/): the source notes behind the report.
 - [School interview plan](docs/research/school-interview-plan.md): hypotheses, sample, interview guides and timeline for validating the research with schools.
 - [Interview materials](docs/research/interview-materials/): intro letter, Level B3 paper prototype, device audit sheet and tracking sheet.
+- [Prospect list (private)](docs/research/prospects/README.md): how to download CBSE SARAS lists by hand and build the private launch-school list with `build_prospects.py`. School-level files are git-ignored.
 - [Supplier quote requests](docs/research/supplier-quotes/): draft requests to printers, kit makers, distributors and booksellers, plus a comparison sheet, to replace the cost estimates with real quotes.
 
 ## Launch plan
