@@ -39,6 +39,13 @@ Principal names are **not** copied into the output, to keep personal data to the
 
 Next, each school's **official** email and phone are added from the Mandatory Public Disclosure page CBSE requires schools to publish on their own websites, starting with the four launch areas (Delhi NCR, Chandigarh tricity, Lucknow, Jaipur). Each added contact records its source URL and date.
 
+```bash
+python -P -E docs/research/prospects/enrich_contacts.py            # all launch areas (resumable)
+python -P -E docs/research/prospects/enrich_contacts.py --limit 20 # quick test
+```
+
+The script visits each school's own website (home page, then up to three linked disclosure or contact pages, including one disclosure PDF), respects `robots.txt`, pauses between pages on the same site, and caches results in `contacts-cache.private.csv` so a run can be resumed. It writes `launch-schools-contacts.private.csv`. Contacts are only what schools publish themselves; many are Gmail or mobile numbers the school lists as its office contact, so treat them as office contacts and re-check before use.
+
 ## Rules
 
 - Use only official school contacts (school email, office phone). No personal mobiles, no bought lists.
