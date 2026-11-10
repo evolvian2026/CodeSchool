@@ -18,6 +18,8 @@ CBSE's directory blocks automated tools, so the downloads are done by hand in a 
 
 Any column layout is fine; the script matches columns by their headings.
 
+**What actually worked (10 November 2026):** SARAS has no export button. The state lists were read from the results table in the user's own Chrome (one state at a time, at normal browsing pace), with principal names left out, and saved here as `saras-<state>.private.csv`. Chrome blocked repeated file downloads from the site, so the files went through the clipboard instead. SARAS lists have no status column, so the script infers the management type from the school name and website (for example KV, JNV, Delhi government school abbreviations and `.nic.in` / `.gov.in` sites); everything else is marked "private (likely)" and should be spot-checked.
+
 ## 2. Build the list
 
 ```bash

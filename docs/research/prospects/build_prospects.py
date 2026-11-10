@@ -16,6 +16,7 @@ TODAY = dt.date.today().isoformat()
 # Heading keywords -> output field. First match wins; matching ignores case and punctuation.
 COLUMNS = [
     ("affiliation_no", ["affiliation no", "aff no", "affiliationno", "affno", "affiliation number", "aff code"]),
+    ("school_code", ["school code", "sch code"]),
     ("status", ["school status", "status of school", "category", "school type", "type of school", "management", "status"]),
     ("school_name", ["school name", "name of school", "name of the school", "schoolname", "school"]),
     ("address", ["address", "postal address", "school address"]),
@@ -45,11 +46,16 @@ MGMT = [  # (management type, is_private, patterns on status text or school name
     ("Kendriya Vidyalaya", False, [r"\bkvs\b", r"kendriya vidyalaya"]),
     ("Navodaya Vidyalaya", False, [r"\bjnv\b", r"navodaya"]),
     ("Sainik / military", False, [r"sainik school", r"military school"]),
-    ("Army / defence society", False, [r"army public school", r"\bawes\b", r"air force school", r"navy children", r"naval public"]),
+    ("Army / defence or police society", False, [r"army public school", r"\bawes\b", r"air force", r"navy children", r"naval public",
+                                                  r"\bbsf\b", r"\bcrpf\b", r"\bitbp\b", r"\bcisf\b", r"\bssb\b", r"assam rifles"]),
     ("Central Tibetan", False, [r"\bctsa\b", r"tibetan"]),
     ("Atomic Energy", False, [r"atomic energy"]),
     ("Eklavya (EMRS)", False, [r"eklavya", r"\bemrs\b"]),
-    ("Government", False, [r"\bgovt\b", r"government", r"\bgsss\b", r"\bgmss\b", r"rajkiya", r"pm shri", r"sarvodaya", r"\bsoe\b", r"school of excellence"]),
+    ("Government", False, [r"\bgovt\b", r"government", r"\bgsss\b", r"\bgmss\b", r"rajkiya", r"pm shri", r"sarvodaya", r"\bsoe\b", r"school of excellence",
+                              r"specialised excellence", r"school of eminence", r"atal awasiya", r"railway", r"\bsose\b", r"pratibha vikas",
+                              r"\bs ?k ?v\b", r"\bs ?b ?v\b", r"\bg ?[bg] ?s ?s ?s\b", r"\bg ?s ?s ?s\b", r"sarvody", r"\bndmc\b", r"\bmcd\b",
+                              r"cantonment", r"nagar nigam", r"zila parishad",
+                              r"edudel\.nic\.in", r"\.nic\.in", r"\.gov\.in", r"kvs\.ac\.in"]),
     ("Government-aided", False, [r"\baided\b"]),
     ("Private (independent)", True, [r"independent", r"private", r"unaided"]),
 ]
@@ -98,24 +104,33 @@ def read_rows(path):
 def map_header(rows):
     """Find the header row (the first row matching at least 3 known headings) and map columns."""
     for i, row in enumerate(rows[:30]):
-        m = {}
-        for j, cell in enumerate(row):
-            h = norm(cell)
-            if not h or any(k in h for k in SKIP) and "school" not in h:
+        m, cells = {}, [(j, norm(c)) for j, c in enumerate(row)]
+        cells = [(j, h) for j, h in cells if h and not (any(k in h for k in SKIP) and "school" not in h)]
+        # Pass 1: exact heading matches win (so "School Code" never becomes the school name).
+        for j, h in cells:
+            for field, keys in COLUMNS:
+                if field not in m and h in keys:
+                    m[field] = j; break
+        # Pass 2: looser matches for headings still unmapped; the bare word "school" only matches exactly.
+        used = set(m.values())
+        for j, h in cells:
+            if j in used:
                 continue
             for field, keys in COLUMNS:
-                if field not in m and any(h == k or h.startswith(k) or k in h for k in keys):
-                    m[field] = j; break
+                if field not in m and any(k != "school" and (h.startswith(k) or k in h) for k in keys):
+                    m[field] = j; used.add(j); break
         if len(m) >= 3 and "school_name" in m:
             return i, m
     return None, None
 
 
-def classify(status, name):
-    text = f"{norm(status)} | {norm(name)}"
+def classify(status, name, website=""):
+    text = f"{norm(status)} | {norm(name)} | {str(website or '').lower()}"  # official .nic.in/.gov.in sites mean government
     for label, private, pats in MGMT:
         if any(re.search(p, text) for p in pats):
             return label, private
+    if not norm(status):  # SARAS lists have no status column: no government pattern in the name means likely private
+        return "Private (likely, by name)", "likely"
     return "Unclassified", None
 
 
@@ -155,8 +170,8 @@ def main():
                 prev["source_file"] += f"; {f.name}"
                 if (prev["email"] or prev["phone"]) and not prev["contact_source"]: prev["contact_source"] = "SARAS download"
                 continue
-            mg, private = classify(rec["status"], name)
-            rec.update(management=mg, private={True: "yes", False: "no", None: "check"}[private],
+            mg, private = classify(rec["status"], name, rec["website"])
+            rec.update(management=mg, private={True: "yes", False: "no", None: "check", "likely": "likely"}[private],
                        launch_area=launch_area(rec["state"], rec["district"], rec["address"]),
                        contact_source="SARAS download" if (rec["email"] or rec["phone"]) else "",
                        source_file=f.name, captured=TODAY)
@@ -172,10 +187,10 @@ def main():
         return [title] + [f"  {k or '(blank)'}: {v}" for k, v in counter.most_common()] + [""]
     lines = [f"Launch-school list built {TODAY} from {len(files)} file(s); {len(data)} unique schools.", ""]
     lines += block("By management type:", Counter(r["management"] for r in data))
-    lines += block("Private (yes / no / check):", Counter(r["private"] for r in data))
-    lines += block("Launch area (private schools only):", Counter(r["launch_area"] for r in data if r["private"] == "yes"))
+    lines += block("Private (yes / likely / no / check):", Counter(r["private"] for r in data))
+    lines += block("Launch area (private or likely private):", Counter(r["launch_area"] for r in data if r["private"] in ("yes", "likely")))
     lines += block("By state:", Counter(r["state"] for r in data))
-    lines += block("Top districts (private schools):", Counter(f"{r['district']}, {r['state']}" for r in data if r["private"] == "yes"))
+    lines += block("Top districts (private or likely private):", Counter(f"{r['district']}, {r['state']}" for r in data if r["private"] in ("yes", "likely")).most_common(25) and Counter(dict(Counter(f"{r['district']}, {r['state']}" for r in data if r["private"] in ("yes", "likely")).most_common(25))))
     lines += [f"With a website: {sum(1 for r in data if r['website'])}",
               f"With an email or phone from SARAS: {sum(1 for r in data if r['email'] or r['phone'])}"]
     if problems:
