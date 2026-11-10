@@ -188,9 +188,8 @@ def scatter(points, xlabel, ylabel, w=300, h=170, xmax=None, ymax=None, colour=N
     return d
 
 
-def item_cards(items, w=84, h=46):
+def item_cards(items, w=84, h=46, per_row=5):
     """Picture-card style labels: items = [(name, tag, colour)], e.g. ('banana peel', 'wet', GREEN)."""
-    per_row = 5
     rows = (len(items) + per_row - 1) // per_row
     d = Drawing(min(len(items), per_row) * (w + 6), rows * (h + 6))
     for i, (name, tag, col) in enumerate(items):
