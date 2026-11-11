@@ -4,7 +4,7 @@ date: 10 November 2026
 kicker: CODESCHOOL  ·  LAUNCH PLAN  ·  DRAFT
 title: April 2027 launch
 lines: A dated plan, worked back from the first day of | the 2027-28 session, for the Offline Programme | in CBSE schools
-meta: Prepared by Anoop Dobhal, CodeSchool (Bullseye Knowledge System Limited) | 10 November 2026 | Draft version 0.2 | Built on the research pack, costs report and school proposals
+meta: Prepared by Anoop Dobhal, CodeSchool (Bullseye Knowledge System Limited) | 10 November 2026 | Draft version 0.3 (11 November 2026: teacher training added) | Built on the research pack, costs report and school proposals
 notelabel: About this plan
 notekind: info
 draftnote: This plan works backwards from 1 April 2027. Dates are targets, not commitments. Launch scope was decided on 10 November 2026: the full range for all six classes (Option A). The other decisions in section 2 are needed by 20 November 2026. Costs and margins referred to here are estimates from the costs and competitor report until real quotes arrive.
@@ -16,7 +16,7 @@ draftnote: This plan works backwards from 1 April 2027. Dates are targets, not c
 |---|---|
 | Packs printed and with appointed booksellers in each launch city | Parents buy books in the last week of March and the first week of April |
 | A classroom kit and teacher book delivered to every adopting section | Teachers need them in the first CT&AI period |
-| Every adopting teacher has had a 2-hour orientation (late March or first half of April) | The programme is teacher-led; untrained teachers will not use it |
+| Every adopting teacher has had a 2-hour orientation (22 March-15 April), the first step of the year-long teacher training plan | The programme is teacher-led; untrained teachers will not use it, and support has to continue through the year |
 | CodeSchool listed on each adopting school's published 2027-28 booklist | Booklists are finalised in December-January |
 | Pilot results from January-March 2027 written up | Evidence for schools still deciding, and for fixing content |
 
@@ -104,6 +104,7 @@ The pilot (January-March) runs on draft chapters, so most of its lessons will re
 |---|---|---|
 | Fri 13 Nov | Send printer and kit quote requests; book distributor and bookseller meetings | Requests out (see supplier-quotes folder) |
 | Mon 16 Nov | School interviews begin (research only, as promised in the letter) | Interview notes (private) |
+| Fri 20 Nov | Agree the teacher training model and add training to the school proposals | Training plan agreed |
 | Fri 20 Nov | **Decisions 2-3, brand name**; ISBN application (18 titles); writers, illustrators and designers contracted | Team in place |
 | Mon 23 Nov | Printer and kit quotes due | Comparison sheet filled |
 | Fri 27 Nov | Trademark filing; chartered accountant's view on GST (book, kit, bundle) | GST set-up confirmed |
@@ -117,6 +118,7 @@ The pilot (January-March) runs on draft chapters, so most of its lessons will re
 | Mon 7 Dec | Specimen booklet artwork to printer | Print-ready PDF |
 | Fri 11 Dec | Interviews end; distributor and bookseller terms known | Interview findings; channel terms |
 | Tue 15 Dec | **50 specimen booklets per band delivered** | Specimens |
+| Fri 18 Dec | Draft the orientation session and classroom observation checklist; plan the pilot-teacher training | Training drafts |
 | Fri 18 Dec | Go/no-go check against the interview decision rule (Decision Kit) | Decision recorded |
 | From 16 Dec | Specimen visits to schools that agreed to a follow-up (separate from the research interviews) | School interest list |
 | Thu 31 Dec | Appoint 2-3 booksellers per launch city on firm-order terms | Bookseller agreements |
@@ -125,10 +127,11 @@ The pilot (January-March) runs on draft chapters, so most of its lessons will re
 
 | Date | Task | Output |
 |---|---|---|
-| Mon 4 Jan | Free pilot starts in 2-3 sections (see proposals) | Pilot running |
+| Mon 4 Jan | Pilot teachers trained with the draft orientation; free pilot starts in 2-3 sections (see proposals); model lessons recorded with consent | Pilot running |
 | Fri 8 Jan | Kit prototype received; durability test begins in pilot classes | Kit feedback |
 | Fri 29 Jan | Booklist adoption deadline for most schools | List of adopting schools and sections |
 | Mon 1 Feb | Collect firm section counts from adopting schools | Order quantities |
+| Mon 1 Feb | Lead trainer hired; trainer guide, slides and observation checklist drafting starts | Trainer in place |
 | Wed 10 Feb | **All student content print-ready** (six workbooks, six project booklets); kit artwork final since 29 Jan | Final files |
 | Mon 15 Feb | Print and kit orders placed | Purchase orders |
 | Mon 1 Mar | Teacher books print-ready; short-run print ordered | Teacher books by 15 Mar |
@@ -139,9 +142,23 @@ The pilot (January-March) runs on draft chapters, so most of its lessons will re
 |---|---|---|
 | Mon 15 Mar | Print run and kits delivered to the warehouse | Stock |
 | Mon 15 Mar | Pilot ends; pilot report to pilot schools | Pilot report |
+| Mon 15 Mar | Trainer guide, slides, quick-reference cards and trainer demo kit ready; orientation dates and venues booked; leaders' briefings in adopting schools | Training ready |
 | Thu 25 Mar | Packs with booksellers; kits and teacher books delivered to schools | Supply complete |
-| 22 Mar-15 Apr | Teacher orientations (2 hours each, in clusters where possible) | Teachers trained |
+| 22 Mar-15 Apr | Teacher orientations (2 hours each, in clusters where possible) | Every adopting teacher at Starter level |
 | Thu 1 Apr | **Session 2027-28 starts** | Launch |
+
+### April 2027-March 2028: support teachers through the year
+
+The orientation is only the start. The teacher training plan adds about 21 more hours per teacher across the year:
+
+| When | Task | Output |
+|---|---|---|
+| Apr-May 2027 | One-day foundation workshops by band (Classes 3-5 and 6-8); first practice circle | Teachers practise lessons, marking and projects |
+| Monthly | Practice circles (90 minutes, about six a year), in clusters or online | Problems shared and solved |
+| Jul, Oct 2027 and Feb 2028 | Teach-ahead sessions before each block of chapters | Teachers ready for the next units |
+| Each term | At least one supportive classroom visit per new teacher | Feedback and next steps |
+| Oct 2027-Jan 2028 | Choose and train champion teachers (2 days) | Peer support for year 2 |
+| Feb-Mar 2028 | Certificates; annual teacher meet; year-1 training report | Plan for year 2 and the training platform |
 
 ## 5. Who does what
 
@@ -153,7 +170,7 @@ The pilot (January-March) runs on draft chapters, so most of its lessons will re
 | Printing and logistics | Anoop | Printer; transport |
 | Schools: interviews, specimens, adoption | Anoop | Introductions from your network |
 | Booksellers and distributors | Anoop | — |
-| Pilot and teacher orientation | Anoop | One trainer from February |
+| Pilot and teacher training (see the teacher training plan) | Anoop, then the lead trainer | One lead trainer from February; freelance trainers for March-April if more than about 50 schools adopt; champion teachers from term 2 |
 
 Almost every line falls on one person. **Contracting the content team of about eight people by 20 November** is the first and most urgent task for the full range.
 
@@ -166,6 +183,7 @@ Almost every line falls on one person. **Contracting the content team of about e
 | Kit prototype and dies | About Rs 10,000-50,000 (est.) | To confirm in kit quotes |
 | Print run and kits | Depends on orders; cash out about 3-5 months before booksellers pay | Costs report: about Rs 31-40 lakh at 100 schools |
 | Trademark filing and GST advice | About Rs 25,000-75,000 (est.) | To confirm |
+| Teacher training, year 1 (lead trainer, peak-season trainers, travel, venues, demo kits, model-lesson videos, certificates) | About Rs 8-16 lakh (est.) | Teacher training plan |
 
 > [!risk] **Cash timing.** Print and kits are paid in February-March, but booksellers usually pay months later. Confirm credit terms with booksellers and payment terms with the printer before placing orders.
 
@@ -179,6 +197,7 @@ Almost every line falls on one person. **Contracting the content team of about e
 | Few schools adopt in time | Fewer than about 10 schools by 29 Jan | Print short runs only; focus on pilot schools and next year |
 | CBSE publishes its project list or rubrics | CBSE circular | Realign project booklets before 10 Feb |
 | Distributors expect school commissions | Raised in meetings | Use appointed booksellers and direct school orders only |
+| Schools cannot release teachers for training | Few sign-ups for orientations or workshops | Train inside in-service days or after school; split the workshop into two half-days or run it online |
 | Printer capacity in February-March | Late quotes or long lead times | Book capacity in November with a deposit |
 
 ## 8. Documents this plan relies on
@@ -187,6 +206,7 @@ Almost every line falls on one person. **Contracting the content team of about e
 - **Costs and competitor report:** cost estimates, channel terms and margins.
 - **School proposals (offline and online):** pilot design and success measures.
 - **Supplier quote requests:** ready to send.
+- **Teacher training plan:** competency framework, session designs, the year-long support model and requirements for a future training platform.
 - **India schools report:** market size and device access.
 
 © 2026 Bullseye Knowledge System Limited. All rights reserved.
