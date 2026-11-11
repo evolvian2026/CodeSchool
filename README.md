@@ -66,6 +66,7 @@ Illustrated workbooks that follow the NCERT maths chapters in the same order as 
 - [Class 5 teacher book (PDF, 38 pp)](docs/books/CodeSchool-Class5-Teacher-Book.pdf) ([lesson notes](docs/books/class5/teacher.py))
 - [Class 6 teacher book (PDF, 44 pp)](docs/books/CodeSchool-Class6-Teacher-Book.pdf) ([lesson notes](docs/books/class6/teacher.py)): also covers the AI chapters (with optional computer activities) and gives a teacher guide for each 20-hour project
 - [Class 7 teacher book (PDF, 44 pp)](docs/books/CodeSchool-Class7-Teacher-Book.pdf) ([lesson notes](docs/books/class7/teacher.py)): CT and AI chapters plus guides for the Nutri-Quest and Sort It with AI projects
+- [Class 8 teacher book (PDF, 42 pp)](docs/books/CodeSchool-Class8-Teacher-Book.pdf) ([lesson notes](docs/books/class8/teacher.py)): CT and AI chapters (with card versions of CBSE's no-code labs) plus guides for the Sports for Everyone and Fair AI Audit projects
 
 Build them with the shared tools (the number is the class):
 
