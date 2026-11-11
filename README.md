@@ -68,12 +68,22 @@ Illustrated workbooks that follow the NCERT maths chapters in the same order as 
 - [Class 7 teacher book (PDF, 44 pp)](docs/books/CodeSchool-Class7-Teacher-Book.pdf) ([lesson notes](docs/books/class7/teacher.py)): CT and AI chapters plus guides for the Nutri-Quest and Sort It with AI projects
 - [Class 8 teacher book (PDF, 42 pp)](docs/books/CodeSchool-Class8-Teacher-Book.pdf) ([lesson notes](docs/books/class8/teacher.py)): CT and AI chapters (with card versions of CBSE's no-code labs) plus guides for the Sports for Everyone and Fair AI Audit projects
 
+**Assessment books** have one photocopiable 10-mark test for every chapter (the AI chapters too in Classes 6-8), each on a single page: three multiple-choice questions, two short answers and one 'think like a coder' task. Each book adds a guide to turning scores into journal levels, answers with marking guides, and a class record sheet. All questions are new, so they do not repeat the workbook:
+
+- [Class 3 assessment book (PDF, 20 pp)](docs/books/CodeSchool-Class3-Assessment-Book.pdf) ([questions](docs/books/class3/assessment.py))
+- [Class 4 assessment book (PDF, 20 pp)](docs/books/CodeSchool-Class4-Assessment-Book.pdf) ([questions](docs/books/class4/assessment.py))
+- [Class 5 assessment book (PDF, 21 pp)](docs/books/CodeSchool-Class5-Assessment-Book.pdf) ([questions](docs/books/class5/assessment.py))
+- [Class 6 assessment book (PDF, 20 pp)](docs/books/CodeSchool-Class6-Assessment-Book.pdf) ([questions](docs/books/class6/assessment.py))
+- [Class 7 assessment book (PDF, 18 pp)](docs/books/CodeSchool-Class7-Assessment-Book.pdf) ([questions](docs/books/class7/assessment.py))
+- [Class 8 assessment book (PDF, 17 pp)](docs/books/CodeSchool-Class8-Assessment-Book.pdf) ([questions](docs/books/class8/assessment.py))
+
 Build them with the shared tools (the number is the class):
 
 ```bash
 python -P -E docs/books/tools/build_book.py 4
 python -P -E docs/books/tools/build_specimen.py 4
 python -P -E docs/books/tools/build_teacher.py 3
+python -P -E docs/books/tools/build_assessment.py 3
 ```
 
 ## School proposals (drafts)
