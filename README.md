@@ -78,6 +78,15 @@ Illustrated workbooks that follow the NCERT maths chapters in the same order as 
 - [Class 7 assessment book (PDF, 18 pp)](docs/books/CodeSchool-Class7-Assessment-Book.pdf) ([questions](docs/books/class7/assessment.py))
 - [Class 8 assessment book (PDF, 17 pp)](docs/books/CodeSchool-Class8-Assessment-Book.pdf) ([questions](docs/books/class8/assessment.py))
 
+**Sample examination papers** give each class a half-yearly paper (term-1 chapters) and an annual paper (whole year), with blueprints by chapter and thinking level, and full marking schemes. CBSE sets no CT&AI paper pattern for Classes 3-8, so the papers follow the handbooks' competency-based written tests (no coding, no computer needed) and CBSE's usual question types: 40 marks in 1½ hours for Classes 3-5 (multiple choice, short answers, case-based), and 50 marks in 2 hours for Classes 6-8 (adding assertion-reason, long answers and a case-based question). The Classes 6-8 books also give unplugged practical-exam stations with a rubric, and one way to combine written, practical, project and journal marks:
+
+- [Class 3 sample papers (PDF, 14 pp)](docs/books/CodeSchool-Class3-Sample-Papers.pdf) ([questions](docs/books/class3/papers.py))
+- [Class 4 sample papers (PDF, 15 pp)](docs/books/CodeSchool-Class4-Sample-Papers.pdf) ([questions](docs/books/class4/papers.py))
+- [Class 5 sample papers (PDF, 14 pp)](docs/books/CodeSchool-Class5-Sample-Papers.pdf) ([questions](docs/books/class5/papers.py))
+- [Class 6 sample papers (PDF, 13 pp)](docs/books/CodeSchool-Class6-Sample-Papers.pdf) ([questions](docs/books/class6/papers.py))
+- [Class 7 sample papers (PDF, 13 pp)](docs/books/CodeSchool-Class7-Sample-Papers.pdf) ([questions](docs/books/class7/papers.py))
+- [Class 8 sample papers (PDF, 13 pp)](docs/books/CodeSchool-Class8-Sample-Papers.pdf) ([questions](docs/books/class8/papers.py))
+
 Build them with the shared tools (the number is the class):
 
 ```bash
@@ -85,6 +94,7 @@ python -P -E docs/books/tools/build_book.py 4
 python -P -E docs/books/tools/build_specimen.py 4
 python -P -E docs/books/tools/build_teacher.py 3
 python -P -E docs/books/tools/build_assessment.py 3
+python -P -E docs/books/tools/build_papers.py 3
 ```
 
 ## School proposals (drafts)
