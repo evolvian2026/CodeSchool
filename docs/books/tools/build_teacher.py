@@ -24,6 +24,21 @@ _args = [a for a in sys.argv[1:] if not a.isdigit()]
 OUT = _args[0] if _args else str(B.BOOKS / f"CodeSchool-Class{CLASS}-Teacher-Book.pdf")
 NAVY = "#1F2A44"
 PERIODS = TMETA.get("periods_per_chapter", 5)
+MIXED = bool(PROJECTS) or "ai_periods" in TMETA  # Classes 6-8: CT chapters, AI chapters and projects have different lengths
+
+
+def is_ai(ch):
+    return str(ch.get("badge", "")).startswith("AI")
+
+
+def unit_periods(u):
+    if u in PROJECTS:
+        return TMETA["project_periods"]
+    return TMETA.get("ai_periods", PERIODS) if is_ai(u) else PERIODS
+
+
+def total_periods():
+    return sum(unit_periods(u) for u in CH + PROJECTS) + TMETA.get("review_periods", 0)
 
 
 def words_list(ch):
@@ -42,18 +57,21 @@ def contents_page():
 
 
 def about_pages():
-    hours, periods = TMETA["hours"], len(CH) * PERIODS + TMETA.get("review_periods", 0)
+    hours, periods = TMETA["hours"], total_periods()
     s = [NextPageTemplate("body"), PageBreak(), B.SetChapter(None), B.TocMark("About this teacher book", "about"), heading("About this teacher book"),
          P(f"This book goes with the <i>Think Like a Coder</i> Class {CLASS} workbook. It gives you a plan for every chapter, so that a maths or class teacher "
-           f"can teach computational thinking confidently without being a computer specialist. CBSE suggests about <b>{hours} hours</b> a year for Class {CLASS}; "
+           f"can teach computational thinking{' and AI' if MIXED else ''} confidently without being a computer specialist. CBSE suggests about <b>{hours} hours</b> a year for Class {CLASS}; "
            f"the plans here use <b>{periods} periods of 40 minutes</b>, which is about {round(periods * 40 / 60)} hours."), Spacer(1, 8)]
     s += [box([checklist([f"<b>A year plan</b> showing which chapter to teach in which term, next to the NCERT maths chapter.",
-                          f"<b>A {PERIODS}-period plan for every chapter</b>: what you do and what students do in each period.",
+                          (f"<b>A {PERIODS}-period plan for every chapter</b>: what you do and what students do in each period." if not MIXED else
+                           "<b>A period-by-period plan for every chapter</b>, including the AI chapters: what you do and what students do."),
                           "<b>A hands-on activity</b> for every chapter, with set-up steps and a tip.",
                           "<b>Common mistakes</b> to watch for, and how to support or stretch students.",
                           "<b>An exit check</b> with answers, and what to note in the observation journal.",
                           "<b>The answer key</b> for every page of the student workbook.",
-                          "<b>Photocopiable</b> observation journal and term summary pages at the back."], "#14A3A3")],
+                          "<b>Photocopiable</b> observation journal and term summary pages at the back."] +
+                         (["<b>A teacher guide for each 20-hour project</b>: week-by-week plan, roles, set-up, pitfalls and how to mark with the rubric."] if PROJECTS else []),
+                         "#14A3A3")],
               "#14A3A3", "What is in this book", icon("star")), Spacer(1, 10)]
     s += [box([checklist(["Read the chapter in the student book and these notes. Most lessons need 5 to 10 minutes to prepare.",
                           "Get the kit items ready (listed under <i>At a glance</i>). Everything is reusable.",
@@ -61,23 +79,25 @@ def about_pages():
                           "Teach the CT chapter in the same week or fortnight as the matching NCERT maths chapter, so the maths is fresh.",
                           "Keep it active: children should talk, act out and build more than they listen."], "#8B5CF6")],
               "#8B5CF6", "Before you start", icon("check")), Spacer(1, 10)]
-    s += [box([P("No computers are needed. Every idea is taught with paper, cards, the floor mat and talk. These are the same ideas children will later use in block coding "
-                 "and AI: steps in order, loops, decisions, data and testing. A projector helps for showing pages but is optional.", "body")], "#5B6577", "No computer lab needed")]
+    lab = TMETA.get("lab_note", "No computers are needed. Every idea is taught with paper, cards, the floor mat and talk. These are the same ideas children will later use in block coding "
+                                "and AI: steps in order, loops, decisions, data and testing. A projector helps for showing pages but is optional.")
+    s += [box([P(lab, "body")], "#5B6577", TMETA.get("lab_title", "No computer lab needed"))]
     return s
 
 
 def year_plan():
     rows = [["Ch", "Chapter", "Coder skill", "Level", "Periods", "Term"]]
-    for ch in CH:
+    for ch in CH + PROJECTS:
         term = next((t for t, chs in TMETA["terms"] if ch["n"] in chs), "")
-        rows.append([B.ch_badge(ch), ch["title"], ch["skill"], ch["level"], str(PERIODS), term])
+        rows.append([B.ch_badge(ch), ch["title"], ch["skill"], ch["level"], str(unit_periods(ch)), term])
     rp = TMETA.get("review_periods", 0)
     if rp:
         rows.append(["", "Revision and term assessment", "Review games, the term summary and parent feedback", "All", str(rp), "Both"])
-    total = len(CH) * PERIODS + rp
+    total = total_periods()
     s = [NextPageTemplate("body"), PageBreak(), B.TocMark("Year plan", "yearplan"), heading("Year plan"),
-         P(f"{len(CH)} chapters of {PERIODS} periods each" + (f", plus {rp} periods for revision and assessment" if rp else
-                                                              "; revision and the term assessment fit into each chapter's fifth period") +
+         P((TMETA["plan_note"] if MIXED else
+            f"{len(CH)} chapters of {PERIODS} periods each" + (f", plus {rp} periods for revision and assessment" if rp else
+                                                              "; revision and the term assessment fit into each chapter's fifth period")) +
            f": <b>{total} periods</b> of 40 minutes in all. "
            "Teach each chapter alongside the NCERT maths chapter with the same name; the order and timing can follow your school's maths plan.", "body"), Spacer(1, 6),
          table(rows, [28, 112, CW - 28 - 112 - 44 - 46 - 60, 44, 46, 60], font=9)]
@@ -110,9 +130,12 @@ def period_rows(ch, L):
             ["2", f"Hands-on: {a['title']}", "Run the activity below. Move between groups and note who can explain the idea.", a.get("students", "Work in pairs or groups, act it out and record what they did.")],
             ["3", "Try it!", "Set questions 1-5. After about 15 minutes, pairs swap books and check with the answer key. Discuss the hardest question together.",
              "Answer questions 1-5. Explain one answer to the class."],
-            ["4", "Now you build it", f"{b['intro']} Model the first card or step, then let pairs finish.", b["task"]],
-            ["5", "Challenge and check", "Give the challenge to early finishers, then solve it together. Run the exit check and note levels in the journal.",
-             "Try the challenge, colour 'How did I do?' and answer the exit check."]]
+            ["4", "Now you build it", f"{b['intro']} Model the first card or step, then let pairs finish.", b["task"]]]
+    extra = L.get("extra", TMETA.get("extra", []))
+    for focus, teacher, students in extra:
+        rows.append([str(len(rows)), focus, teacher, students])
+    rows.append([str(len(rows)), "Challenge and check", "Give the challenge to early finishers, then solve it together. Run the exit check and note levels in the journal.",
+                 "Try the challenge, colour 'How did I do?' and answer the exit check."])
     return rows
 
 
@@ -124,8 +147,8 @@ def lesson_story(ch, L):
               ["Students will", join_and(ch["ican"]) + "."],
               ["Key words", ", ".join(f"<b>{w}</b> ({m})" for w, m in ch["words"])],
               ["Materials", L["materials"]],
-              ["Time", f"{PERIODS} periods of 40 minutes"],
-              ["Link", L.get("link", f"Teach alongside chapter {ch['n']} of {META['textbook_long']}.")]]
+              ["Time", f"{unit_periods(ch)} periods of 40 minutes"],
+              ["Link", L.get("link", ch["source"].replace("&", "&amp;") + "." if is_ai(ch) else f"Teach alongside chapter {ch['n']} of {META['textbook_long']}.")]]
     s += [table(glance, [92, CW - 92], head_color=col, font=9.5), Spacer(1, 8)]
     s += [KeepTogether([P(f"<font color='{col}'><b>Period by period</b></font>", "h", fontSize=13, leading=17), Spacer(1, 2),
                         table(period_rows(ch, L), [40, 82, (CW - 122) / 2, (CW - 122) / 2], head_color=col, font=9)]), Spacer(1, 8)]
@@ -138,6 +161,8 @@ def lesson_story(ch, L):
     s += [KeepTogether([box(acts, "#2BB673", "Hands-on activity: " + a["title"], icon("blocks"))]), Spacer(1, 8)]
     s += [KeepTogether([box([checklist(L["mistakes"], "#E5484D")], "#E5484D", "Common mistakes to watch for")]), Spacer(1, 8)]
     s += [KeepTogether([box([P(f"<b>Support:</b> {L['support']}<br/><b>Stretch:</b> {L['stretch']}", "body")], "#8B5CF6", "Different paces")]), Spacer(1, 8)]
+    if L.get("lab"):
+        s += [KeepTogether([box([P(L["lab"], "body")], "#3B82F6", "If you have computers (optional)")]), Spacer(1, 8)]
     ex = [P("Two quick questions at the end of the chapter:", "body")]
     for k, (q, ans) in enumerate(L["exit"], 1):
         ex.append(P(f"<b>{k}.</b> {q} <font color='#5B6577'>(Answer: {ans})</font>", "body"))
@@ -149,6 +174,39 @@ def lesson_story(ch, L):
     ans = [P(f"<b>{i}.</b> {q['answer']}", "ans") for i, q in enumerate(ch["practice"], 1)]
     ans += [P(f"<b>Build it:</b> {ch['build']['answer']}", "ans"), P(f"<b>Challenge:</b> {ch['challenge']['answer']}", "ans")]
     s += [KeepTogether([box(ans, "#5B6577", "Answer key")])]
+    return s
+
+
+def project_guide(p, L):
+    col = p["color"]
+    tp = dict(p, kicker="TEACHER GUIDE  ·  " + p.get("kicker", "PROJECT"))
+    s = [NextPageTemplate("body"), PageBreak(), B.SetChapter(p), B.Banner(tp), Spacer(1, 8)]
+    glance = [["At a glance", ""],
+              ["Big question", p["question"]],
+              ["Students will", L["goals"]],
+              ["Groups", L["groups"]],
+              ["Materials", L["materials"]],
+              ["Time", f"{unit_periods(p)} periods of 40 minutes (about 2 periods a week for 10 weeks)"],
+              ["Evidence", L["evidence"]]]
+    s += [table(glance, [92, CW - 92], head_color=col, font=9.5), Spacer(1, 8)]
+    assert len(L["teacher_plan"]) == len(p["plan"]), p["title"]
+    rows = [["Weeks", "Stage", "Students do", "Teacher does"]]
+    for (wk, stage, what), t in zip(p["plan"], L["teacher_plan"]):
+        rows.append([wk, stage, what, t])
+    s += [KeepTogether([P(f"<font color='{col}'><b>Week by week</b></font>", "h", fontSize=13, leading=17), Spacer(1, 2),
+                        table(rows, [42, 74, (CW - 116) / 2, (CW - 116) / 2], head_color=col, font=9)]), Spacer(1, 8)]
+    s += [KeepTogether([box([checklist(L["setup"], "#2BB673")], "#2BB673", "Setting up", icon("blocks"))]), Spacer(1, 8)]
+    roles = [P("Give each student a role and rotate roles at the halfway point, so everyone collects, checks, builds and presents.", "body")]
+    roles += [P(f"<b>{r}:</b> {d}", "body", leftIndent=10) for r, d in L["roles"]]
+    s += [KeepTogether([box(roles, col, "Team roles", icon("star"))]), Spacer(1, 8)]
+    s += [KeepTogether([box([checklist(L["mistakes"], "#E5484D")], "#E5484D", "Common pitfalls")]), Spacer(1, 8)]
+    s += [KeepTogether([box([P(f"<b>Support:</b> {L['support']}<br/><b>Stretch:</b> {L['stretch']}", "body")], "#8B5CF6", "Different paces")]), Spacer(1, 8)]
+    if L.get("lab"):
+        s += [KeepTogether([box([P(L["lab"], "body")], "#3B82F6", "If you have computers (optional)")]), Spacer(1, 8)]
+    rub = [["What we check", "What excellent (4) looks like"]] + [[c, g] for c, g in p["rubric"]]
+    s += [KeepTogether([P(f"<font color='{col}'><b>Marking with the rubric</b></font>", "h", fontSize=13, leading=17), Spacer(1, 2),
+                        P(L["marking"], "body"), Spacer(1, 2), table(rub, [130, CW - 130], head_color=col, font=9.5)]), Spacer(1, 8)]
+    s += [KeepTogether([box([P(L["exemplar"], "body")], "#14A3A3", "What a strong project sounds like", icon("bulb"))])]
     return s
 
 
@@ -197,7 +255,8 @@ def on_teacher_cover(c, doc):
     c.drawString(LM + 10, PH - 202, "a Coder")
     c.setFillColor(C("#FFD23F")); c.setFont("Fun", 22); c.drawString(LM + 14, PH - 240, f"Teacher book for Class {CLASS}")
     c.setFillColor(colors.white); c.setFont("Kid", 12.5)
-    for k, line in enumerate([f"A {PERIODS}-period plan for every chapter", "Hands-on activities, common mistakes and exit checks",
+    for k, line in enumerate([f"A {PERIODS}-period plan for every chapter" if not MIXED else "Period-by-period plans for every CT and AI chapter",
+                              "Hands-on activities, common mistakes and exit checks" if not MIXED else "Teacher guides for both 20-hour projects",
                               "Answer keys, assessment guide and photocopiable journal"]):
         c.drawString(LM + 14, PH - 268 - k * 18, line)
     F.robo(220, color=F.YELLOW, wave=True).drawOn(c, PW - 290, 250)
@@ -236,6 +295,8 @@ def build():
     story += assessment_pages()
     for ch in CH:
         story += lesson_story(ch, LESSONS[ch["n"]])
+    for pr in PROJECTS:
+        story += project_guide(pr, LESSONS[pr["n"]])
     story += journal_page()
     story += summary_page()
     doc = TeacherDoc(OUT)
