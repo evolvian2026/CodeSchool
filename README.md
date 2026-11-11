@@ -62,6 +62,7 @@ Illustrated workbooks that follow the NCERT maths chapters in the same order as 
 **Teacher books** give a five-period plan for every chapter (teacher and student actions per period), a hands-on activity, common mistakes, support and stretch ideas, an exit check with what to note in the observation journal, and the full answer key, plus a year plan, an assessment guide and photocopiable journal and term-summary pages:
 
 - [Class 3 teacher book (PDF, 36 pp)](docs/books/CodeSchool-Class3-Teacher-Book.pdf) ([lesson notes](docs/books/class3/teacher.py))
+- [Class 4 teacher book (PDF, 36 pp)](docs/books/CodeSchool-Class4-Teacher-Book.pdf) ([lesson notes](docs/books/class4/teacher.py))
 
 Build them with the shared tools (the number is the class):
 
