@@ -59,11 +59,16 @@ Illustrated workbooks that follow the NCERT maths chapters in the same order as 
 | 7 | [Think Like a Coder, Class 7 (PDF, 52 pp)](docs/books/CodeSchool-Class7-Think-Like-a-Coder.pdf) | [Class 7 specimen (PDF, 24 pp)](docs/books/CodeSchool-Class7-Specimen-Booklet.pdf) | [class7/content.py](docs/books/class7/content.py) |
 | 8 | [Think Like a Coder, Class 8 (PDF, 47 pp)](docs/books/CodeSchool-Class8-Think-Like-a-Coder.pdf) | [Class 8 specimen (PDF, 24 pp)](docs/books/CodeSchool-Class8-Specimen-Booklet.pdf) | [class8/content.py](docs/books/class8/content.py) |
 
+**Teacher books** give a five-period plan for every chapter (teacher and student actions per period), a hands-on activity, common mistakes, support and stretch ideas, an exit check with what to note in the observation journal, and the full answer key, plus a year plan, an assessment guide and photocopiable journal and term-summary pages:
+
+- [Class 3 teacher book (PDF, 36 pp)](docs/books/CodeSchool-Class3-Teacher-Book.pdf) ([lesson notes](docs/books/class3/teacher.py))
+
 Build them with the shared tools (the number is the class):
 
 ```bash
 python -P -E docs/books/tools/build_book.py 4
 python -P -E docs/books/tools/build_specimen.py 4
+python -P -E docs/books/tools/build_teacher.py 3
 ```
 
 ## School proposals (drafts)
