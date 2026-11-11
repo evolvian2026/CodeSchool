@@ -63,6 +63,7 @@ Illustrated workbooks that follow the NCERT maths chapters in the same order as 
 
 - [Class 3 teacher book (PDF, 36 pp)](docs/books/CodeSchool-Class3-Teacher-Book.pdf) ([lesson notes](docs/books/class3/teacher.py))
 - [Class 4 teacher book (PDF, 36 pp)](docs/books/CodeSchool-Class4-Teacher-Book.pdf) ([lesson notes](docs/books/class4/teacher.py))
+- [Class 5 teacher book (PDF, 38 pp)](docs/books/CodeSchool-Class5-Teacher-Book.pdf) ([lesson notes](docs/books/class5/teacher.py))
 
 Build them with the shared tools (the number is the class):
 

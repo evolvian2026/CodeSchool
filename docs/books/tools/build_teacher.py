@@ -76,7 +76,9 @@ def year_plan():
         rows.append(["", "Revision and term assessment", "Review games, the term summary and parent feedback", "All", str(rp), "Both"])
     total = len(CH) * PERIODS + rp
     s = [NextPageTemplate("body"), PageBreak(), B.TocMark("Year plan", "yearplan"), heading("Year plan"),
-         P(f"{len(CH)} chapters of {PERIODS} periods each, plus {rp} periods for revision and assessment: <b>{total} periods</b> of 40 minutes in all. "
+         P(f"{len(CH)} chapters of {PERIODS} periods each" + (f", plus {rp} periods for revision and assessment" if rp else
+                                                              "; revision and the term assessment fit into each chapter's fifth period") +
+           f": <b>{total} periods</b> of 40 minutes in all. "
            "Teach each chapter alongside the NCERT maths chapter with the same name; the order and timing can follow your school's maths plan.", "body"), Spacer(1, 6),
          table(rows, [28, 112, CW - 28 - 112 - 44 - 46 - 60, 44, 46, 60], font=9)]
     return s
